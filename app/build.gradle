@@ -28,6 +28,8 @@ ext {
     gsonVersion = "2.8.0"
     retrofitAdapterVersion = "1.0.0"
     okHttpVersion = "3.7.0"
+    rxJavaVersion = "2.1.1"
+    rxAndroidVersion = "2.0.1"
 }
 
 dependencies {
@@ -48,6 +50,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofitAdapterVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
