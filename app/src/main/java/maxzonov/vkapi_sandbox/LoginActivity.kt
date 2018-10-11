@@ -3,8 +3,6 @@ package maxzonov.vkapi_sandbox
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.Bitmap
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -20,8 +18,9 @@ class LoginActivity : AppCompatActivity() {
     companion object {
         private const val CLIENT_ID = "6707335"
         private const val REDIRECT_URI = "https://oauth.vk.com/blank.html"
+        private const val API_VERSION = "5.85"
         private const val AUTH_URL = "https://oauth.vk.com/authorize?client_id=$CLIENT_ID&display=page&" +
-                "redirect_uri=$REDIRECT_URI&scope=friends&response_type=token&v=5.52"
+                "redirect_uri=$REDIRECT_URI&scope=friends&response_type=token&v=$API_VERSION"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +35,6 @@ class LoginActivity : AppCompatActivity() {
         webview_login.loadUrl(AUTH_URL)
         webview_login.visibility = View.VISIBLE
         webview_login.webViewClient = VkWebViewClient()
-
     }
 
     inner class VkWebViewClient : WebViewClient() {
@@ -66,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
 
             if (accessToken != null && userId != null) {
                 writeParamsToPrefs(accessToken, userId)
-//                startActivity(Intent(this, StartActivity.class))
+                startActivity(Intent(this, MainActivity::class.java))
             }
         } else {
             setResult(Activity.RESULT_CANCELED)
