@@ -1,4 +1,4 @@
-package maxzonov.vkapi_sandbox
+package maxzonov.vkapi_sandbox.ui
 
 import android.app.Activity
 import android.content.Context
@@ -12,6 +12,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
+import maxzonov.vkapi_sandbox.R
 
 class LoginActivity : AppCompatActivity() {
 

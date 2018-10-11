@@ -1,9 +1,10 @@
-package maxzonov.vkapi_sandbox
+package maxzonov.vkapi_sandbox.ui
 
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+import maxzonov.vkapi_sandbox.R
 
 class MainActivity : AppCompatActivity() {
 
