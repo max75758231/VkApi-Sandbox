@@ -1,6 +1,5 @@
 package maxzonov.vkapi_sandbox.ui
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -29,10 +28,6 @@ class StartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start)
 
         btn_sign_in.setOnClickListener {
-//            val intent = Intent(this, LoginActivity::class.java)
-//            startActivity(intent)
-
-//            webview_login.visibility = View.VISIBLE
             btn_sign_in.visibility = View.GONE
 
             webview_login.settings.javaScriptEnabled = true
@@ -47,11 +42,6 @@ class StartActivity : AppCompatActivity() {
     }
 
     inner class VkWebViewClient : WebViewClient() {
-//        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-//            super.onPageStarted(view, url, favicon)
-//
-//            parseUrl(url)
-//        }
 
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
