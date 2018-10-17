@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        layout_profile_progressbar.visibility = View.VISIBLE
+
         val prefs = this.getSharedPreferences("params", Context.MODE_PRIVATE)
         val userId: String = prefs.getLong("userId", 0).toString()
         val token: String = prefs.getString("token", "")
@@ -28,7 +31,15 @@ class MainActivity : AppCompatActivity() {
         val apiService: ApiService = RetrofitClient.getApiService()
 
         compositeDisposable.add(
-                apiService.getInitialProfileResponse(Constants.METHOD_USERS, userId, "last_seen", token, Constants.API_VERSION)
+                apiService
+                        .getInitialProfileResponse
+                        (
+                            Constants.METHOD_USERS,
+                            userId,
+                            Constants.FIELDS_PROFILE,
+                            token,
+                            Constants.API_VERSION
+                        )
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(this::handleResponseSuccess, this::handleResponseError)
         )
@@ -42,10 +53,13 @@ class MainActivity : AppCompatActivity() {
         if (response.response[0].online == 1) {
             tv_profile_online.text = "Online"
         } else {
-            tv_profile_online.text = "Offline"
+            val lastSeenTime = response.response[0].lastSeen.time.toString()
+            tv_profile_online.text = "Был в $lastSeenTime"
         }
 
         Glide.with(this).load(response.response[0].photoCropped).into(iv_profile_ava)
+
+        layout_profile_progressbar.visibility = View.GONE
     }
 
     private fun handleResponseError(error: Throwable) {

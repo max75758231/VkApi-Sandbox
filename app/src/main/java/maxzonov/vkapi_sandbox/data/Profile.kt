@@ -10,6 +10,6 @@ data class Profile (
         @SerializedName("online") val online: Int,
         @SerializedName("home_town") val homeTown: String,
         @SerializedName("bdate") val birthDate: String,
-        @SerializedName("photo_50") val photoCropped: String,
+        @SerializedName("photo_max") val photoCropped: String,
         @SerializedName("last_seen") val lastSeen: LastSeen
 )

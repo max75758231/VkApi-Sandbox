@@ -27,7 +27,7 @@
         android:textColor="#4a5599"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tv_profile_online"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_profile_ava"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,13 +47,15 @@
 
     <TextView
         android:id="@+id/tv_profile_online"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="online"
+        android:text="Была 20 сентября в 22.22"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/iv_profile_ava"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_last_name" />
 
     <TextView
         android:id="@+id/tv_profile_bdate"
@@ -65,8 +67,9 @@
         android:text="22.01.1999"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/iv_profile_ava"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_last_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_online" />
 
     <TextView
         android:id="@+id/tv_profile_hometown"
@@ -78,5 +81,26 @@
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/iv_profile_ava"
         app:layout_constraintTop_toBottomOf="@+id/tv_profile_bdate" />
+
+    <LinearLayout
+        android:id="@+id/layout_profile_progressbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

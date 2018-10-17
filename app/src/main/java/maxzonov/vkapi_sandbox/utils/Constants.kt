@@ -4,5 +4,6 @@ class Constants {
     companion object {
         const val API_VERSION = "5.85"
         const val METHOD_USERS = "users.get"
+        const val FIELDS_PROFILE = "sex, online, home_town, bdate, photo_max, last_seen"
     }
 }
