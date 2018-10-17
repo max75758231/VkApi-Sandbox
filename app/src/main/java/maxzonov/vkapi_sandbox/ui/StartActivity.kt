@@ -5,17 +5,13 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_start.*
 import maxzonov.vkapi_sandbox.R
-import android.webkit.WebResourceRequest
-import android.os.Build
-import android.annotation.TargetApi
-
+import android.graphics.Bitmap
 
 
 class StartActivity : AppCompatActivity() {
@@ -66,8 +62,6 @@ class StartActivity : AppCompatActivity() {
 
         val accessToken: String? = Uri.parse(newUrl).getQueryParameter("access_token")
         val userId: Long? = Uri.parse(newUrl).getQueryParameter("user_id").toLong()
-
-//        Log.d("myLog", "token: $accessToken userId: $userId")
 
         if (accessToken != null && userId != null) {
             writeParamsToPrefs(accessToken, userId)
