@@ -12,6 +12,11 @@ import android.webkit.WebViewClient
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_start.*
 import maxzonov.vkapi_sandbox.R
+import android.webkit.WebResourceRequest
+import android.os.Build
+import android.annotation.TargetApi
+
+
 
 class StartActivity : AppCompatActivity() {
 
@@ -35,9 +40,9 @@ class StartActivity : AppCompatActivity() {
             webview_login.isHorizontalScrollBarEnabled = false
             webview_login.clearCache(true)
 
-            webview_login.loadUrl(AUTH_URL)
             webview_login.visibility = View.VISIBLE
             webview_login.webViewClient = VkWebViewClient()
+            webview_login.loadUrl(AUTH_URL)
         }
     }
 
@@ -62,7 +67,7 @@ class StartActivity : AppCompatActivity() {
         val accessToken: String? = Uri.parse(newUrl).getQueryParameter("access_token")
         val userId: Long? = Uri.parse(newUrl).getQueryParameter("user_id").toLong()
 
-        Log.d("myLog", "token: $accessToken userId: $userId")
+//        Log.d("myLog", "token: $accessToken userId: $userId")
 
         if (accessToken != null && userId != null) {
             writeParamsToPrefs(accessToken, userId)
