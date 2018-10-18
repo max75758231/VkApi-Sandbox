@@ -14,7 +14,6 @@ import maxzonov.vkapi_sandbox.R
 import android.graphics.Bitmap
 import maxzonov.vkapi_sandbox.utils.Constants
 
-
 class StartActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +65,7 @@ class StartActivity : AppCompatActivity() {
                 writeParamsAndStartActivity(accessToken, userId)
             }
         } else {
+            btn_sign_in.visibility = View.VISIBLE
             Toast.makeText(this, "Вернулся неверный url", Toast.LENGTH_LONG).show()
             return
         }
@@ -73,8 +73,14 @@ class StartActivity : AppCompatActivity() {
 
     private fun writeParamsAndStartActivity(accessToken: String, userId: Long) {
         writeParamsToPrefs(accessToken, userId)
+
         webview_login.visibility = View.GONE
-        startActivity(Intent(this, MainActivity::class.java))
+
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        overridePendingTransition(R.anim.move_right_activity_out, R.anim.move_left_activity_in)
+        finish()
     }
 
     private fun writeParamsToPrefs(token: String, userId: Long) {

@@ -3,6 +3,7 @@ package maxzonov.vkapi_sandbox.ui
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
@@ -14,8 +15,11 @@ import maxzonov.vkapi_sandbox.data.Response
 import maxzonov.vkapi_sandbox.retrofit.ApiService
 import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
 import maxzonov.vkapi_sandbox.utils.Constants
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+
+    var isBackButtonClicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +47,22 @@ class MainActivity : AppCompatActivity() {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(this::handleResponseSuccess, this::handleResponseError)
         )
+    }
+
+    override fun onBackPressed() {
+
+        val backPressedDelay: Long = 2000
+
+        if (isBackButtonClicked) {
+            finish()
+            return
+        }
+
+        isBackButtonClicked = true
+
+        Toast.makeText(this, getString(R.string.main_exit_button), Toast.LENGTH_SHORT).show()
+
+        Handler().postDelayed({ isBackButtonClicked = false }, backPressedDelay)
     }
 
     private fun handleResponseSuccess(response: Response) {

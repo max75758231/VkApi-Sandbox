@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VkApi-Sandbox</string>
+
+    <string name="main_exit_button">Для выхода из приложения нажмите \"назад\" еще раз</string>
 </resources>
