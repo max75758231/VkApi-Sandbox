@@ -21,8 +21,6 @@ class StartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start)
 
         btn_sign_in.setOnClickListener {
-            btn_sign_in.visibility = View.GONE
-
             setupWebview(Constants.VK_AUTH_URL, VkWebViewClient())
         }
     }
