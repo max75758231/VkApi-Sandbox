@@ -12,17 +12,10 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_start.*
 import maxzonov.vkapi_sandbox.R
 import android.graphics.Bitmap
+import maxzonov.vkapi_sandbox.utils.Constants
 
 
 class StartActivity : AppCompatActivity() {
-
-    companion object {
-        private const val CLIENT_ID = "6707335"
-        private const val REDIRECT_URI = "https://oauth.vk.com/blank.html"
-        private const val API_VERSION = "5.85"
-        private const val AUTH_URL = "https://oauth.vk.com/authorize?client_id=$CLIENT_ID&display=page&" +
-                "redirect_uri=$REDIRECT_URI&scope=friends&response_type=token&v=$API_VERSION"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,15 +24,19 @@ class StartActivity : AppCompatActivity() {
         btn_sign_in.setOnClickListener {
             btn_sign_in.visibility = View.GONE
 
-            webview_login.settings.javaScriptEnabled = true
-            webview_login.isVerticalScrollBarEnabled = false
-            webview_login.isHorizontalScrollBarEnabled = false
-            webview_login.clearCache(true)
-
-            webview_login.visibility = View.VISIBLE
-            webview_login.webViewClient = VkWebViewClient()
-            webview_login.loadUrl(AUTH_URL)
+            setupWebview(Constants.VK_AUTH_URL, VkWebViewClient())
         }
+    }
+
+    private fun setupWebview(authUrl: String, webViewClient: WebViewClient) {
+        webview_login.settings.javaScriptEnabled = true
+        webview_login.isVerticalScrollBarEnabled = false
+        webview_login.isHorizontalScrollBarEnabled = false
+        webview_login.clearCache(true)
+
+        webview_login.visibility = View.VISIBLE
+        webview_login.webViewClient = webViewClient
+        webview_login.loadUrl(authUrl)
     }
 
     inner class VkWebViewClient : WebViewClient() {
@@ -53,27 +50,31 @@ class StartActivity : AppCompatActivity() {
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
 
-            parseUrl(url)
+            getParamsFromVkRedirectUrl(url)
         }
     }
 
-    private fun parseUrl(url: String?) {
+    private fun getParamsFromVkRedirectUrl(url: String?) {
 
-        if (url == null) {
+        if (url != null) {
+            val urlModified = url.replace('#', '?')
+
+            val accessToken: String? = Uri.parse(urlModified).getQueryParameter("access_token")
+            val userId: Long? = Uri.parse(urlModified).getQueryParameter("user_id").toLong()
+
+            if (accessToken != null && userId != null) {
+                writeParamsAndStartActivity(accessToken, userId)
+            }
+        } else {
             Toast.makeText(this, "Вернулся неверный url", Toast.LENGTH_LONG).show()
             return
         }
+    }
 
-        var newUrl = url.replace('#', '?')
-
-        val accessToken: String? = Uri.parse(newUrl).getQueryParameter("access_token")
-        val userId: Long? = Uri.parse(newUrl).getQueryParameter("user_id").toLong()
-
-        if (accessToken != null && userId != null) {
-            writeParamsToPrefs(accessToken, userId)
-            webview_login.visibility = View.GONE
-            startActivity(Intent(this, MainActivity::class.java))
-        }
+    private fun writeParamsAndStartActivity(accessToken: String, userId: Long) {
+        writeParamsToPrefs(accessToken, userId)
+        webview_login.visibility = View.GONE
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     private fun writeParamsToPrefs(token: String, userId: Long) {

@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity() {
                 apiService
                         .getInitialProfileResponse
                         (
-                            Constants.METHOD_USERS,
+                            Constants.VK_METHOD_USERS,
                             userId,
-                            Constants.FIELDS_PROFILE,
+                            Constants.VK_FIELDS_PROFILE,
                             token,
-                            Constants.API_VERSION
+                            Constants.VK_API_VERSION
                         )
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(this::handleResponseSuccess, this::handleResponseError)
