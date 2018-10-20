@@ -6,79 +6,86 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <ImageView
-        android:id="@+id/iv_profile_ava"
-        android:layout_width="@dimen/profile_iv_size"
-        android:layout_height="@dimen/profile_iv_size"
-        android:layout_marginStart="@dimen/general_spacing_16dp"
-        android:layout_marginTop="@dimen/general_spacing_16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher" />
+    <com.github.florent37.shapeofview.shapes.DiagonalView
+        android:id="@+id/arc_profile_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:elevation="4dp"
+        app:shape_diagonal_angle="10"
+        app:shape_diagonal_direction="left"
+        app:shape_diagonal_position="bottom">
+
+        <ImageView
+            android:id="@+id/iv_profile_ava"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+    </com.github.florent37.shapeofview.shapes.DiagonalView>
 
     <TextView
         android:id="@+id/tv_profile_first_name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/general_spacing_16dp"
-        android:layout_marginTop="@dimen/general_spacing_16dp"
-        android:layout_marginEnd="@dimen/general_spacing_8dp"
+        android:layout_marginTop="@dimen/general_spacing_12dp"
         android:text="Константин"
         android:textColor="@color/colorProfileName"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_profile_ava"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arc_profile_avatar" />
 
     <TextView
         android:id="@+id/tv_profile_last_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/general_spacing_16dp"
-        android:layout_marginEnd="@dimen/general_spacing_8dp"
+        android:layout_marginStart="@dimen/general_spacing_8dp"
+        android:layout_marginTop="@dimen/general_spacing_12dp"
         android:text="Константинович"
-        android:textSize="@dimen/profile_name_font_size"
-        android:textStyle="bold"
         android:textColor="@color/colorProfileName"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_profile_ava"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_first_name" />
+        app:layout_constraintStart_toEndOf="@+id/tv_profile_first_name"
+        app:layout_constraintTop_toBottomOf="@+id/arc_profile_avatar" />
 
     <TextView
         android:id="@+id/tv_profile_online"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/general_spacing_16dp"
-        android:layout_marginTop="@dimen/general_spacing_8dp"
         android:layout_marginEnd="@dimen/general_spacing_8dp"
+        android:layout_marginBottom="@dimen/general_spacing_16dp"
         android:text="Была 20 сентября в 22.22"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_profile_ava"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_last_name" />
+        android:gravity="right"
+        app:layout_constraintBottom_toTopOf="@+id/tv_profile_last_name"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/tv_profile_bdate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/general_spacing_16dp"
-        android:layout_marginTop="@dimen/general_spacing_8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/general_spacing_8dp"
         android:text="22.01.1999"
         android:textSize="@dimen/profile_bdate_font_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_profile_ava"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_online" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_first_name" />
 
     <TextView
         android:id="@+id/tv_profile_hometown"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/general_spacing_16dp"
         android:layout_marginTop="@dimen/general_spacing_8dp"
+        android:layout_marginEnd="8dp"
         android:text="Город: Комсомольск-на-Амуре"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/iv_profile_ava"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_profile_bdate" />
 
     <LinearLayout
