@@ -70,11 +70,17 @@ class MainActivity : AppCompatActivity() {
         tv_profile_last_name.text = response.response[0].lastName
         tv_profile_bdate.text = response.response[0].birthDate
         tv_profile_hometown.text = response.response[0].homeTown
+
         if (response.response[0].online == 1) {
             tv_profile_online.text = "Online"
         } else {
-            val lastSeenTime = response.response[0].lastSeen.time.toString()
-            tv_profile_online.text = "Был в $lastSeenTime"
+            val lastSeenDay = DateFormatter.convertDateToDayString(response.response[0].lastSeen.time)
+            val lastSeenTime = DateFormatter.convertDateToTimeString(response.response[0].lastSeen.time)
+
+            if (response.response[0].sex == 1)
+                tv_profile_online.text = "Была $lastSeenDay в $lastSeenTime"
+            else
+                tv_profile_online.text = "Был $lastSeenDay в $lastSeenTime"
         }
 
         Glide.with(this).load(response.response[0].photoCropped).into(iv_profile_ava)
