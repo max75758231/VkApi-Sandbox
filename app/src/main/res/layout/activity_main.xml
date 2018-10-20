@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.ProfileActivity">
 
     <com.github.florent37.shapeofview.shapes.DiagonalView
         android:id="@+id/arc_profile_avatar"

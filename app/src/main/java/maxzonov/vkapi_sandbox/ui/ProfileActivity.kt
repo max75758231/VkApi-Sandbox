@@ -16,10 +16,11 @@ import maxzonov.vkapi_sandbox.retrofit.ApiService
 import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
 import maxzonov.vkapi_sandbox.utils.Constants
 import android.widget.Toast
+import maxzonov.vkapi_sandbox.utils.DateFormatter
 
-class MainActivity : AppCompatActivity() {
+class ProfileActivity : AppCompatActivity() {
 
-    var isBackButtonClicked = false
+    private var isBackButtonClicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,6 +90,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleResponseError(error: Throwable) {
-        Log.d("myLog", error.printStackTrace().toString())
+        Toast.makeText(this, "Не удалось загрузить профиль. Проверьте интернет-соединение", Toast.LENGTH_LONG).show()
+        Log.d("myLog", error.message)
     }
 }
