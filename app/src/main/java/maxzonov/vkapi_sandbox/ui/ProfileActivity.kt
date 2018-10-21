@@ -66,9 +66,10 @@ class ProfileActivity : AppCompatActivity() {
         Handler().postDelayed({ isBackButtonClicked = false }, backPressedDelay)
     }
 
-    private fun handleResponseSuccess(response: Response) {
-        tv_profile_first_name.text = response.profiles[0].firstName
-        tv_profile_last_name.text = response.profiles[0].lastName
+    private fun handleResponseSuccess(response: Response) {response.profiles[0].firstName
+        val firstName = response.profiles[0].firstName
+        val lastName = response.profiles[0].lastName
+        tv_profile_name.text = "$firstName $lastName"
         tv_profile_bdate.text = response.profiles[0].birthDate
         tv_profile_hometown.text = response.profiles[0].homeTown
         tv_profile_current_school.text = response.profiles[0].currentSchool
