@@ -9,7 +9,7 @@
     <com.github.florent37.shapeofview.shapes.DiagonalView
         android:id="@+id/arc_profile_avatar"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="@dimen/profile_iv_size"
         android:elevation="4dp"
         app:shape_diagonal_angle="10"
         app:shape_diagonal_direction="left"
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@mipmap/ic_launcher" />
+            tools:srcCompat="@mipmap/ic_launcher" />
 
     </com.github.florent37.shapeofview.shapes.DiagonalView>
 
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/general_spacing_16dp"
         android:layout_marginTop="@dimen/general_spacing_12dp"
-        android:text="Константин"
+        tools:text="Константин"
         android:textColor="@color/colorProfileName"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/general_spacing_8dp"
         android:layout_marginTop="@dimen/general_spacing_12dp"
-        android:text="Константинович"
+        tools:text="Константинович"
         android:textColor="@color/colorProfileName"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/general_spacing_8dp"
         android:layout_marginBottom="@dimen/general_spacing_16dp"
-        android:text="Была 20 сентября в 22.22"
+        tools:text="Была 20 сентября в 22.22"
         android:gravity="right"
         app:layout_constraintBottom_toTopOf="@+id/tv_profile_last_name"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -67,10 +67,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/general_spacing_16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/general_spacing_16dp"
         android:layout_marginEnd="@dimen/general_spacing_8dp"
-        android:text="22.01.1999"
+        tools:text="22.01.1999"
         android:textSize="@dimen/profile_bdate_font_size"
+        android:drawablePadding="@dimen/general_spacing_16dp"
+        android:drawableLeft="@drawable/ic_profile_bdate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_profile_first_name" />
@@ -81,9 +83,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/general_spacing_16dp"
         android:layout_marginTop="@dimen/general_spacing_8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Город: Комсомольск-на-Амуре"
+        android:layout_marginEnd="@dimen/general_spacing_8dp"
+        tools:text="Комсомольск-на-Амуре"
         android:textSize="14sp"
+        android:drawablePadding="@dimen/general_spacing_16dp"
+        android:drawableLeft="@drawable/ic_profile_city"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_profile_bdate" />
@@ -107,6 +111,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_profile_current_school"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/general_spacing_16dp"
+        android:layout_marginTop="@dimen/general_spacing_8dp"
+        tools:text="Очень длинное название школы"
+        android:drawableLeft="@drawable/ic_profile_school"
+        android:drawablePadding="@dimen/general_spacing_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_hometown" />
 
 
 </android.support.constraint.ConstraintLayout>

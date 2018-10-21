@@ -9,7 +9,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_profile.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.data.Response
 import maxzonov.vkapi_sandbox.retrofit.ApiService
@@ -24,7 +24,7 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_profile)
 
         layout_profile_progressbar.visibility = View.VISIBLE
 
@@ -67,24 +67,25 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun handleResponseSuccess(response: Response) {
-        tv_profile_first_name.text = response.response[0].firstName
-        tv_profile_last_name.text = response.response[0].lastName
-        tv_profile_bdate.text = response.response[0].birthDate
-        tv_profile_hometown.text = response.response[0].homeTown
+        tv_profile_first_name.text = response.profiles[0].firstName
+        tv_profile_last_name.text = response.profiles[0].lastName
+        tv_profile_bdate.text = response.profiles[0].birthDate
+        tv_profile_hometown.text = response.profiles[0].homeTown
+        tv_profile_current_school.text = response.profiles[0].currentSchool
 
-        if (response.response[0].online == 1) {
+        if (response.profiles[0].online == 1) {
             tv_profile_online.text = "Online"
         } else {
-            val lastSeenDay = DateFormatter.convertDateToDayString(response.response[0].lastSeen.time)
-            val lastSeenTime = DateFormatter.convertDateToTimeString(response.response[0].lastSeen.time)
+            val lastSeenDay = DateFormatter.convertDateToDayString(response.profiles[0].lastSeen.time)
+            val lastSeenTime = DateFormatter.convertDateToTimeString(response.profiles[0].lastSeen.time)
 
-            if (response.response[0].sex == 1)
+            if (response.profiles[0].sex == 1)
                 tv_profile_online.text = "Была $lastSeenDay в $lastSeenTime"
             else
                 tv_profile_online.text = "Был $lastSeenDay в $lastSeenTime"
         }
 
-        Glide.with(this).load(response.response[0].photoCropped).into(iv_profile_ava)
+        Glide.with(this).load(response.profiles[0].photoCropped).into(iv_profile_ava)
 
         layout_profile_progressbar.visibility = View.GONE
     }

@@ -11,5 +11,6 @@ data class Profile (
         @SerializedName("home_town") val homeTown: String,
         @SerializedName("bdate") val birthDate: String,
         @SerializedName("photo_max") val photoCropped: String,
+        @SerializedName("university_name") val currentSchool: String,
         @SerializedName("last_seen") val lastSeen: LastSeen
 )
