@@ -41,7 +41,8 @@ class StartActivity : AppCompatActivity() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
 
-            webview_login.visibility = View.GONE
+            if (url != null && url.startsWith(Constants.VK_REDIRECT_URI))
+                webview_login.visibility = View.GONE
         }
 
         override fun onPageFinished(view: WebView?, url: String?) {
@@ -53,7 +54,7 @@ class StartActivity : AppCompatActivity() {
 
     private fun getParamsFromVkRedirectUrl(url: String?) {
 
-        if (url != null) {
+        if (url != null && url.startsWith(Constants.VK_REDIRECT_URI)) {
             val urlModified = url.replace('#', '?')
 
             val accessToken: String? = Uri.parse(urlModified).getQueryParameter("access_token")
