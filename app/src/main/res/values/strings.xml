@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">VkApi-Sandbox</string>
 
-    <string name="main_exit_button">Для выхода из приложения нажмите \"назад\" еще раз</string>
+    <!-- General strings -->
+    <string name="general_back_button">Для выхода из приложения нажмите \"назад\" еще раз</string>
+
+    <!-- Profile strings -->
+    <string name="profile_last_seen_man">Был %1$s в %2$s</string>
+    <string name="profile_last_seen_woman">Была %1$s в %2$s</string>
+    <string name="profile_last_seen_woman_today">Была в %1$s</string>
+    <string name="profile_last_seen_man_today">Был в %1$s</string>
+    <string name="profile_online">Онлайн</string>
+    <string name="profile_error">Не удалось загрузить профиль. Проверьте интернет-соединение.</string>
 </resources>

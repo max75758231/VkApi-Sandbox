@@ -61,7 +61,7 @@ class ProfileActivity : AppCompatActivity() {
 
         isBackButtonClicked = true
 
-        Toast.makeText(this, getString(R.string.main_exit_button), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.general_back_button), Toast.LENGTH_SHORT).show()
 
         Handler().postDelayed({ isBackButtonClicked = false }, backPressedDelay)
     }
@@ -75,15 +75,15 @@ class ProfileActivity : AppCompatActivity() {
         tv_profile_current_school.text = response.profiles[0].currentSchool
 
         if (response.profiles[0].online == 1) {
-            tv_profile_online.text = "Online"
+            tv_profile_online.text = getString(R.string.profile_online)
         } else {
             val lastSeenDay = DateFormatter.convertDateToDayString(response.profiles[0].lastSeen.time)
             val lastSeenTime = DateFormatter.convertDateToTimeString(response.profiles[0].lastSeen.time)
 
             if (response.profiles[0].sex == 1)
-                tv_profile_online.text = "Была $lastSeenDay в $lastSeenTime"
+                tv_profile_online.text = getString(R.string.profile_last_seen_woman, lastSeenDay, lastSeenTime)
             else
-                tv_profile_online.text = "Был $lastSeenDay в $lastSeenTime"
+                tv_profile_online.text = getString(R.string.profile_last_seen_man, lastSeenDay, lastSeenTime)
         }
 
         Glide.with(this).load(response.profiles[0].photoCropped).into(iv_profile_ava)
@@ -92,7 +92,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun handleResponseError(error: Throwable) {
-        Toast.makeText(this, "Не удалось загрузить профиль. Проверьте интернет-соединение", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.profile_error), Toast.LENGTH_LONG).show()
         Log.d("myLog", error.message)
     }
 }
