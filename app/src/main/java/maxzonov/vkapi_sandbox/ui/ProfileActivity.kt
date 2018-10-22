@@ -1,7 +1,6 @@
 package maxzonov.vkapi_sandbox.ui
 
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -16,9 +15,10 @@ import maxzonov.vkapi_sandbox.retrofit.ApiService
 import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
 import maxzonov.vkapi_sandbox.utils.Constants
 import android.widget.Toast
+import maxzonov.vkapi_sandbox.BaseActivity
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : BaseActivity() {
 
     private var isBackButtonClicked = false
 
