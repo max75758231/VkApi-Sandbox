@@ -11,4 +11,11 @@
     <string name="profile_last_seen_man_today">Был в %1$s</string>
     <string name="profile_online">Онлайн</string>
     <string name="profile_error">Не удалось загрузить профиль. Проверьте интернет-соединение.</string>
+
+    <!-- Menu strings -->
+    <string name="menu_friends">Друзья</string>
+    <string name="menu_bookmarks">Закладки</string>
+    <string name="menu_documents">Документы</string>
+    <string name="menu_photos">Фотографии</string>
+    <string name="menu_groups">Группы</string>
 </resources>

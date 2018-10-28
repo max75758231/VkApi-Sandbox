@@ -1,9 +1,11 @@
 package maxzonov.vkapi_sandbox
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import maxzonov.vkapi_sandbox.ui.MenuActivity
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -15,7 +17,8 @@ open class BaseActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item!!.itemId) {
             R.id.general_action_menu -> {
-                Toast.makeText(this, "Меню", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, MenuActivity::class.java))
+                overridePendingTransition(R.anim.move_right_activity_out, R.anim.move_left_activity_in)
                 true
             }
             R.id.general_action_settings ->  {

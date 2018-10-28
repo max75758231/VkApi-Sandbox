@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MenuActivity">
+
+    <LinearLayout
+        android:id="@+id/layout_menu_friends"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/general_spacing_8dp"
+        android:paddingTop="@dimen/general_spacing_12dp"
+        android:paddingBottom="@dimen/general_spacing_12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_menu_friends"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/menu_friends"
+            android:textSize="@dimen/menu_title_16sp"
+            android:textColor="@color/colorBlack"
+            android:drawableLeft="@drawable/ic_menu_friends"
+            android:drawablePadding="@dimen/general_spacing_24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_menu_groups"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/general_spacing_12dp"
+        android:paddingBottom="@dimen/general_spacing_12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_menu_friends" >
+
+        <TextView
+            android:id="@+id/tv_menu_groups"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/menu_groups"
+            android:textSize="@dimen/menu_title_16sp"
+            android:textColor="@color/colorBlack"
+            android:drawableLeft="@drawable/ic_menu_group"
+            android:drawablePadding="@dimen/general_spacing_24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_menu_photos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/general_spacing_12dp"
+        android:paddingBottom="@dimen/general_spacing_12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_menu_groups">
+
+        <TextView
+            android:id="@+id/tv_menu_photos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/menu_photos"
+            android:textSize="@dimen/menu_title_16sp"
+            android:textColor="@color/colorBlack"
+            android:drawableLeft="@drawable/ic_menu_photo"
+            android:drawablePadding="@dimen/general_spacing_24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_menu_bookmarks"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/general_spacing_12dp"
+        android:paddingBottom="@dimen/general_spacing_12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_menu_photos">
+
+        <TextView
+            android:id="@+id/tv_menu_bookmarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/menu_bookmarks"
+            android:textSize="@dimen/menu_title_16sp"
+            android:textColor="@color/colorBlack"
+            android:drawableLeft="@drawable/ic_menu_bookmarks"
+            android:drawablePadding="@dimen/general_spacing_24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_menu_documents"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/general_spacing_12dp"
+        android:paddingBottom="@dimen/general_spacing_12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_menu_bookmarks">
+
+        <TextView
+            android:id="@+id/tv_menu_docs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/menu_documents"
+            android:textSize="@dimen/menu_title_16sp"
+            android:textColor="@color/colorBlack"
+            android:drawableLeft="@drawable/ic_menu_documents"
+            android:drawablePadding="@dimen/general_spacing_24dp"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
