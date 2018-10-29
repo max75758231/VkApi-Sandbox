@@ -21,6 +21,8 @@ class StartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start)
 
         btn_sign_in.setOnClickListener {
+            btn_sign_in.visibility = View.GONE
+            pb_start.visibility = View.VISIBLE
             setupWebview(Constants.VK_AUTH_URL, VkWebViewClient())
         }
     }
@@ -65,6 +67,7 @@ class StartActivity : AppCompatActivity() {
             }
         } else {
             btn_sign_in.visibility = View.VISIBLE
+            pb_start.visibility = View.GONE
             Toast.makeText(this, "Вернулся неверный url", Toast.LENGTH_LONG).show()
             return
         }
