@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import maxzonov.vkapi_sandbox.ui.MenuActivity
+import maxzonov.vkapi_sandbox.ui.SettingsActivity
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -22,7 +23,8 @@ open class BaseActivity : AppCompatActivity() {
                 true
             }
             R.id.general_action_settings ->  {
-                Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, SettingsActivity::class.java))
+                overridePendingTransition(R.anim.move_right_activity_out, R.anim.move_left_activity_in)
                 true
             }
             else -> super.onOptionsItemSelected(item)

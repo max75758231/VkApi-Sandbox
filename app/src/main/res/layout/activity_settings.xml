@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SettingsActivity">
+
+    <LinearLayout
+        android:id="@+id/layout_settings_exit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/general_spacing_16dp"
+            android:layout_marginRight="@dimen/general_spacing_16dp"
+            android:background="@color/colorDividerGrey"/>
+
+        <TextView
+            android:id="@+id/tv_settings_exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/general_spacing_12dp"
+            android:layout_marginBottom="@dimen/general_spacing_12dp"
+            android:text="Выйти"
+            android:textSize="16sp"
+            android:textColor="@color/colorBlack"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/general_spacing_16dp"
+            android:layout_marginRight="@dimen/general_spacing_16dp"
+            android:background="@color/colorDividerGrey"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

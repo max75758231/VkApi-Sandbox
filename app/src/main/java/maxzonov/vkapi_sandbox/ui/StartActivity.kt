@@ -12,6 +12,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_start.*
 import maxzonov.vkapi_sandbox.R
 import android.graphics.Bitmap
+import android.util.Log
 import maxzonov.vkapi_sandbox.utils.Constants
 
 class StartActivity : AppCompatActivity() {
@@ -33,6 +34,7 @@ class StartActivity : AppCompatActivity() {
         webview_login.isHorizontalScrollBarEnabled = false
         webview_login.clearCache(true)
 
+        Log.d("myLog", authUrl)
         webview_login.visibility = View.VISIBLE
         webview_login.webViewClient = webViewClient
         webview_login.loadUrl(authUrl)
