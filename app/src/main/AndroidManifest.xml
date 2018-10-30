@@ -24,7 +24,8 @@
         <activity android:name=".ui.FriendsActivity" />
         <activity android:name=".ui.DocumentsActivity" />
         <activity android:name=".ui.GroupsActivity" />
-        <activity android:name=".ui.BookmarksActivity"/>
+        <activity android:name=".ui.BookmarksActivity" />
+        <activity android:name=".ui.SettingsActivity"/>
     </application>
 
 </manifest>
