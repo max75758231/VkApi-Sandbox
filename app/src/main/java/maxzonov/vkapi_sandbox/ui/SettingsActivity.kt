@@ -22,6 +22,7 @@ class SettingsActivity : AppCompatActivity() {
 
         clearSetting()
         val intent = Intent(this, StartActivity::class.java)
+        intent.putExtra("after_exit", true)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         overridePendingTransition(R.anim.move_right_activity_out, R.anim.move_left_activity_in)

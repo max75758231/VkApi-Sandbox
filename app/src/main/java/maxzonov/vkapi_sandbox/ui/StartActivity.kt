@@ -24,7 +24,12 @@ class StartActivity : AppCompatActivity() {
         btn_sign_in.setOnClickListener {
             btn_sign_in.visibility = View.GONE
             pb_start.visibility = View.VISIBLE
-            setupWebview(Constants.VK_AUTH_URL, VkWebViewClient())
+
+            if (intent != null && intent.getBooleanExtra("after_exit", false)) {
+                setupWebview(Constants.VK_AUTH_URL_WITH_REGISTRATION, VkWebViewClient())
+            } else {
+                setupWebview(Constants.VK_AUTH_URL, VkWebViewClient())
+            }
         }
     }
 
@@ -34,7 +39,6 @@ class StartActivity : AppCompatActivity() {
         webview_login.isHorizontalScrollBarEnabled = false
         webview_login.clearCache(true)
 
-        Log.d("myLog", authUrl)
         webview_login.visibility = View.VISIBLE
         webview_login.webViewClient = webViewClient
         webview_login.loadUrl(authUrl)
@@ -58,7 +62,11 @@ class StartActivity : AppCompatActivity() {
 
     private fun getParamsFromVkRedirectUrl(url: String?) {
 
-        if (url != null && url.startsWith(Constants.VK_REDIRECT_URI)) {
+        pb_start.visibility = View.VISIBLE
+
+        Log.d("myLog", "url: $url")
+
+        if (url != null && url.startsWith(Constants.VK_REDIRECT_URI) && !url.contains("access_denied")) {
             val urlModified = url.replace('#', '?')
 
             val accessToken: String? = Uri.parse(urlModified).getQueryParameter("access_token")
@@ -67,6 +75,8 @@ class StartActivity : AppCompatActivity() {
             if (accessToken != null && userId != null) {
                 writeParamsAndStartActivity(accessToken, userId)
             }
+        } else if (url != null && url.startsWith(Constants.VK_AUTHORIZE_URI)) {
+            pb_start.visibility = View.GONE
         } else {
             btn_sign_in.visibility = View.VISIBLE
             pb_start.visibility = View.GONE
