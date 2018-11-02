@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            tools:srcCompat="@mipmap/ic_launcher" />
+            android:src="@color/colorImagePlaceholder" />
 
     </com.github.florent37.shapeofview.shapes.DiagonalView>
 
