@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import maxzonov.vkapi_sandbox.ui.MenuActivity
 import maxzonov.vkapi_sandbox.ui.SettingsActivity
 

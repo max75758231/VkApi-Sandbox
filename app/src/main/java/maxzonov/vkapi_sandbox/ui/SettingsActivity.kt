@@ -18,7 +18,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    fun exitAccountAndClearSettings() {
+    private fun exitAccountAndClearSettings() {
 
         clearSetting()
         val intent = Intent(this, StartActivity::class.java)
@@ -29,7 +29,7 @@ class SettingsActivity : AppCompatActivity() {
         finish()
     }
 
-    fun clearSetting() {
+    private fun clearSetting() {
         val prefs = this.getSharedPreferences("params", Context.MODE_PRIVATE)
         val editor = prefs.edit()
         editor.putString("token", "")

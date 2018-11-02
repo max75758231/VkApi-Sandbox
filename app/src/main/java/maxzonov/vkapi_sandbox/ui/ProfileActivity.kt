@@ -86,7 +86,9 @@ class ProfileActivity : BaseActivity() {
                 tv_profile_online.text = getString(R.string.profile_last_seen_man, lastSeenDay, lastSeenTime)
         }
 
-        Glide.with(this).load(response.profiles[0].photoCropped).into(iv_profile_ava)
+        Glide.with(this)
+                .load(response.profiles[0].photoCropped)
+                .into(iv_profile_ava)
 
         layout_profile_progressbar.visibility = View.GONE
     }
