@@ -1,6 +1,6 @@
 package maxzonov.vkapi_sandbox.ui
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import maxzonov.vkapi_sandbox.R
 
