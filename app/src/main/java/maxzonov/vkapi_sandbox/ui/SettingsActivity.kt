@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.edit
 import kotlinx.android.synthetic.main.activity_settings.*
 import maxzonov.vkapi_sandbox.R
 
@@ -31,9 +32,9 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun clearSetting() {
         val prefs = this.getSharedPreferences("params", Context.MODE_PRIVATE)
-        val editor = prefs.edit()
-        editor.putString("token", "")
-        editor.putLong("userId", 0)
-        editor.apply()
+        prefs.edit {
+            putString("token", "")
+            putLong("userId", 0)
+        }
     }
 }

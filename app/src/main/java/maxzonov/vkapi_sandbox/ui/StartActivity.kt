@@ -33,15 +33,17 @@ class StartActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupWebview(authUrl: String, webViewClient: WebViewClient) {
-        webview_login.settings.javaScriptEnabled = true
-        webview_login.isVerticalScrollBarEnabled = false
-        webview_login.isHorizontalScrollBarEnabled = false
-        webview_login.clearCache(true)
+    private fun setupWebview(authUrl: String, wvClient: WebViewClient) {
+        with(webview_login) {
+            settings.javaScriptEnabled = true
+            isVerticalScrollBarEnabled = false
+            isHorizontalScrollBarEnabled = false
+            clearCache(true)
 
-        webview_login.visibility = View.VISIBLE
-        webview_login.webViewClient = webViewClient
-        webview_login.loadUrl(authUrl)
+            visibility = View.VISIBLE
+            webViewClient = wvClient
+            loadUrl(authUrl)
+        }
     }
 
     inner class VkWebViewClient : WebViewClient() {
@@ -56,17 +58,17 @@ class StartActivity : AppCompatActivity() {
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
 
-            getParamsFromVkRedirectUrl(url)
+            url?.let { getParamsFromVkRedirectUrl(it) }
         }
     }
 
-    private fun getParamsFromVkRedirectUrl(url: String?) {
+    private fun getParamsFromVkRedirectUrl(url: String) {
 
         pb_start.visibility = View.VISIBLE
 
         Log.d("myLog", "url: $url")
 
-        if (url != null && url.startsWith(Constants.VK_REDIRECT_URI) && !url.contains("access_denied")) {
+        if (url.startsWith(Constants.VK_REDIRECT_URI) && !url.contains("access_denied")) {
             val urlModified = url.replace('#', '?')
 
             val accessToken: String? = Uri.parse(urlModified).getQueryParameter("access_token")
@@ -75,7 +77,7 @@ class StartActivity : AppCompatActivity() {
             if (accessToken != null && userId != null) {
                 writeParamsAndStartActivity(accessToken, userId)
             }
-        } else if (url != null && url.startsWith(Constants.VK_AUTHORIZE_URI)) {
+        } else if (url.startsWith(Constants.VK_AUTHORIZE_URI)) {
             pb_start.visibility = View.GONE
         } else {
             btn_sign_in.visibility = View.VISIBLE

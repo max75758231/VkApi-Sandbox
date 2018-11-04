@@ -16,11 +16,16 @@ import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
 import maxzonov.vkapi_sandbox.utils.Constants
 import android.widget.Toast
 import maxzonov.vkapi_sandbox.BaseActivity
+import maxzonov.vkapi_sandbox.data.Profile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 
 class ProfileActivity : BaseActivity() {
 
     private var isBackButtonClicked = false
+
+    companion object {
+        private const val DELAY_BETWEEN_BACK_PRESSED: Long = 2000
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +35,7 @@ class ProfileActivity : BaseActivity() {
 
         val prefs = this.getSharedPreferences("params", Context.MODE_PRIVATE)
         val userId: String = prefs.getLong("userId", 0).toString()
-        val token: String = prefs.getString("token", "")
+        val token: String = prefs.getString("token", "")!!
 
         val compositeDisposable = CompositeDisposable()
         val apiService: ApiService = RetrofitClient.getApiService()
@@ -48,49 +53,73 @@ class ProfileActivity : BaseActivity() {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(this::handleResponseSuccess, this::handleResponseError)
         )
+
+        btn_profile_expand_info.setOnClickListener {
+            Toast.makeText(this, "Скоро здесь будет информация", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onBackPressed() {
-
-        val backPressedDelay: Long = 2000
-
         if (isBackButtonClicked) {
             finish()
             return
         }
 
-        isBackButtonClicked = true
-
-        Toast.makeText(this, getString(R.string.general_back_button), Toast.LENGTH_SHORT).show()
-
-        Handler().postDelayed({ isBackButtonClicked = false }, backPressedDelay)
+        requestPressBackButtonAgain()
     }
 
-    private fun handleResponseSuccess(response: Response) {response.profiles[0].firstName
-        val firstName = response.profiles[0].firstName
-        val lastName = response.profiles[0].lastName
-        tv_profile_name.text = "$firstName $lastName"
-        tv_profile_bdate.text = response.profiles[0].birthDate
-        tv_profile_hometown.text = response.profiles[0].homeTown
-        tv_profile_current_school.text = response.profiles[0].currentSchool
+    private fun requestPressBackButtonAgain() {
+        isBackButtonClicked = true
+        Toast.makeText(this, getString(R.string.general_back_button), Toast.LENGTH_SHORT).show()
 
-        if (response.profiles[0].online == 1) {
-            tv_profile_online.text = getString(R.string.profile_online)
-        } else {
-            val lastSeenDay = DateFormatter.convertDateToDayString(response.profiles[0].lastSeen.time)
-            val lastSeenTime = DateFormatter.convertDateToTimeString(response.profiles[0].lastSeen.time)
+        Handler().postDelayed({
+            isBackButtonClicked = false
+        }, DELAY_BETWEEN_BACK_PRESSED)
+    }
 
-            if (response.profiles[0].sex == 1)
-                tv_profile_online.text = getString(R.string.profile_last_seen_woman, lastSeenDay, lastSeenTime)
-            else
-                tv_profile_online.text = getString(R.string.profile_last_seen_man, lastSeenDay, lastSeenTime)
-        }
+    private fun handleResponseSuccess(response: Response) {
+        val profile: Profile = response.profiles[0]
+
+        showProfileInfo(profile)
+    }
+
+    private fun showProfileInfo(profile: Profile) {
+        showFullName(profile)
+        tv_profile_bdate.text = profile.birthDate
+        tv_profile_hometown.text = profile.homeTown
+        tv_profile_current_school.text = profile.currentSchool
+
+        showOnlineStatus(profile)
 
         Glide.with(this)
-                .load(response.profiles[0].photoCropped)
+                .load(profile.photoCropped)
                 .into(iv_profile_ava)
 
         layout_profile_progressbar.visibility = View.GONE
+    }
+
+    private fun showFullName(profile: Profile) {
+        val firstName = profile.firstName
+        val lastName = profile.lastName
+        tv_profile_name.text = "$firstName $lastName"
+    }
+
+    private fun showOnlineStatus(profile: Profile) {
+        if (profile.online == 1) {
+            tv_profile_online.text = getString(R.string.profile_online)
+        } else {
+            showLastSeen(profile)
+        }
+    }
+
+    private fun showLastSeen(profile: Profile) {
+        val lastSeenDay = DateFormatter.convertDateToDayString(profile.lastSeen.time)
+        val lastSeenTime = DateFormatter.convertDateToTimeString(profile.lastSeen.time)
+
+        if (profile.sex == 1)
+            tv_profile_online.text = getString(R.string.profile_last_seen_woman, lastSeenDay, lastSeenTime)
+        else
+            tv_profile_online.text = getString(R.string.profile_last_seen_man, lastSeenDay, lastSeenTime)
     }
 
     private fun handleResponseError(error: Throwable) {

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".ui.ProfileActivity">
 
     <com.github.florent37.shapeofview.shapes.DiagonalView
@@ -155,16 +156,16 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_profile_current_school" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Развернуть профиль"
-        android:background="@color/colorWhite"
-        android:textColor="@color/colorPrimary"
-        android:fontFamily="sans-serif-medium"
+        android:id="@+id/btn_profile_expand_info"
         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorWhite"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/profile_expand_info"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
