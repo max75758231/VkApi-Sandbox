@@ -20,14 +20,8 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun exitAccountAndClearSettings() {
-
         clearSetting()
-        val intent = Intent(this, StartActivity::class.java)
-        intent.putExtra("after_exit", true)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        overridePendingTransition(R.anim.move_right_activity_out, R.anim.move_left_activity_in)
-        finish()
+        exitToStartActivity()
     }
 
     private fun clearSetting() {
@@ -36,5 +30,14 @@ class SettingsActivity : AppCompatActivity() {
             putString("token", "")
             putLong("userId", 0)
         }
+    }
+
+    private fun exitToStartActivity() {
+        val intent = Intent(this, StartActivity::class.java)
+        intent.putExtra("after_exit", true)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        overridePendingTransition(R.anim.move_right_activity_out, R.anim.move_left_activity_in)
+        finish()
     }
 }
