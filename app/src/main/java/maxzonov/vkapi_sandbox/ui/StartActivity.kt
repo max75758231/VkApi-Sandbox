@@ -14,12 +14,15 @@ import maxzonov.vkapi_sandbox.R
 import android.graphics.Bitmap
 import android.util.Log
 import maxzonov.vkapi_sandbox.utils.Constants
+import maxzonov.vkapi_sandbox.utils.PrefsHelper
 
 class StartActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
+
+        PrefsHelper.init(applicationContext)
 
         btn_sign_in.setOnClickListener {
             btn_sign_in.visibility = View.GONE
@@ -100,10 +103,7 @@ class StartActivity : AppCompatActivity() {
     }
 
     private fun writeParamsToPrefs(token: String, userId: Long) {
-        val prefs = this.getSharedPreferences("params", Context.MODE_PRIVATE)
-        val editor = prefs.edit()
-        editor.putString("token", token)
-        editor.putLong("userId", userId)
-        editor.apply()
+        PrefsHelper.write(PrefsHelper.TOKEN, token)
+        PrefsHelper.write(PrefsHelper.ID_USER, userId)
     }
 }

@@ -18,6 +18,7 @@ import android.widget.Toast
 import maxzonov.vkapi_sandbox.BaseActivity
 import maxzonov.vkapi_sandbox.data.Profile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
+import maxzonov.vkapi_sandbox.utils.PrefsHelper
 
 class ProfileActivity : BaseActivity() {
 
@@ -33,9 +34,8 @@ class ProfileActivity : BaseActivity() {
 
         layout_profile_progressbar.visibility = View.VISIBLE
 
-        val prefs = this.getSharedPreferences("params", Context.MODE_PRIVATE)
-        val userId: String = prefs.getLong("userId", 0).toString()
-        val token: String = prefs.getString("token", "")!!
+        val userId = PrefsHelper.read(PrefsHelper.ID_USER, 0).toString()
+        val token = PrefsHelper.read(PrefsHelper.TOKEN, "")
 
         val compositeDisposable = CompositeDisposable()
         val apiService: ApiService = RetrofitClient.getApiService()
@@ -47,7 +47,7 @@ class ProfileActivity : BaseActivity() {
                             Constants.VK_METHOD_USERS,
                             userId,
                             Constants.VK_FIELDS_PROFILE,
-                            token,
+                            token!!,
                             Constants.VK_API_VERSION
                         )
                         .observeOn(AndroidSchedulers.mainThread())
