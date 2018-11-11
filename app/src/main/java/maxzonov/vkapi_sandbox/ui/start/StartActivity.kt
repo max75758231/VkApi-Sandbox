@@ -1,4 +1,4 @@
-package maxzonov.vkapi_sandbox.ui
+package maxzonov.vkapi_sandbox.ui.start
 
 import android.content.Intent
 import android.net.Uri
@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_start.*
 import maxzonov.vkapi_sandbox.R
 import android.graphics.Bitmap
 import android.util.Log
+import maxzonov.vkapi_sandbox.ui.profile.ProfileActivity
 import maxzonov.vkapi_sandbox.utils.Constants
 import maxzonov.vkapi_sandbox.utils.PrefsHelper
 

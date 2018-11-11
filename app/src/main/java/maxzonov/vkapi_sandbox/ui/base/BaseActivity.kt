@@ -1,11 +1,12 @@
-package maxzonov.vkapi_sandbox
+package maxzonov.vkapi_sandbox.ui.base
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import maxzonov.vkapi_sandbox.ui.MenuActivity
-import maxzonov.vkapi_sandbox.ui.SettingsActivity
+import maxzonov.vkapi_sandbox.R
+import maxzonov.vkapi_sandbox.ui.menu.MenuActivity
+import maxzonov.vkapi_sandbox.ui.settings.SettingsActivity
 
 open class BaseActivity : AppCompatActivity() {
 

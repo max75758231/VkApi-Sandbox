@@ -1,10 +1,11 @@
-package maxzonov.vkapi_sandbox.ui
+package maxzonov.vkapi_sandbox.ui.settings
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_settings.*
 import maxzonov.vkapi_sandbox.R
+import maxzonov.vkapi_sandbox.ui.start.StartActivity
 import maxzonov.vkapi_sandbox.utils.PrefsHelper
 
 class SettingsActivity : AppCompatActivity() {

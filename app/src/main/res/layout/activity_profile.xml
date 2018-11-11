@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".ui.ProfileActivity">
+    tools:context=".ui.profile.ProfileActivity">
 
     <com.github.florent37.shapeofview.shapes.DiagonalView
         android:id="@+id/arc_profile_avatar"

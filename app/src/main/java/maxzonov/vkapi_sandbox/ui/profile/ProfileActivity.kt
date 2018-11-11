@@ -1,4 +1,4 @@
-package maxzonov.vkapi_sandbox.ui
+package maxzonov.vkapi_sandbox.ui.profile
 
 import android.os.Bundle
 import android.os.Handler
@@ -14,7 +14,7 @@ import maxzonov.vkapi_sandbox.retrofit.ApiService
 import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
 import maxzonov.vkapi_sandbox.utils.Constants
 import android.widget.Toast
-import maxzonov.vkapi_sandbox.BaseActivity
+import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 import maxzonov.vkapi_sandbox.data.Profile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 import maxzonov.vkapi_sandbox.utils.PrefsHelper

@@ -12,21 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.StartActivity">
+        <activity android:name=".ui.start.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ProfileActivity" />
-        <activity android:name=".ui.MenuActivity" />
-        <activity android:name=".ui.PhotosActivity" />
-        <activity android:name=".ui.FriendsActivity" />
-        <activity android:name=".ui.DocumentsActivity" />
-        <activity android:name=".ui.GroupsActivity" />
-        <activity android:name=".ui.BookmarksActivity" />
-        <activity android:name=".ui.SettingsActivity"/>
+        <activity android:name=".ui.profile.ProfileActivity" />
+        <activity android:name=".ui.menu.MenuActivity" />
+        <activity android:name=".ui.photos.PhotosActivity" />
+        <activity android:name=".ui.friends.FriendsActivity" />
+        <activity android:name=".ui.documents.DocumentsActivity" />
+        <activity android:name=".ui.groups.GroupsActivity" />
+        <activity android:name=".ui.bookmarks.BookmarksActivity" />
+        <activity android:name=".ui.settings.SettingsActivity"/>
     </application>
 
 </manifest>

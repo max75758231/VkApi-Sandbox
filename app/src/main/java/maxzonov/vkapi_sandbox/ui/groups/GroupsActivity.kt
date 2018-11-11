@@ -1,4 +1,4 @@
-package maxzonov.vkapi_sandbox.ui
+package maxzonov.vkapi_sandbox.ui.groups
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
