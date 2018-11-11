@@ -5,7 +5,6 @@ import maxzonov.vkapi_sandbox.data.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.util.*
 
 interface ApiService {
 

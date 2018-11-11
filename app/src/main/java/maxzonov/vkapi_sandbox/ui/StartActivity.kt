@@ -1,6 +1,5 @@
 package maxzonov.vkapi_sandbox.ui
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -103,7 +102,9 @@ class StartActivity : AppCompatActivity() {
     }
 
     private fun writeParamsToPrefs(token: String, userId: Long) {
-        PrefsHelper.write(PrefsHelper.TOKEN, token)
-        PrefsHelper.write(PrefsHelper.ID_USER, userId)
+        with(PrefsHelper) {
+            write(PrefsHelper.TOKEN, token)
+            write(PrefsHelper.ID_USER, userId)
+        }
     }
 }

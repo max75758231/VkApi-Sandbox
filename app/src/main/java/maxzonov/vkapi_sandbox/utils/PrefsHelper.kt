@@ -2,7 +2,6 @@ package maxzonov.vkapi_sandbox.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 
 object PrefsHelper {
 
@@ -15,7 +14,6 @@ object PrefsHelper {
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        Log.d("myLog", "init")
     }
 
     fun read(key: String, value: String): String? {

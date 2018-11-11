@@ -1,6 +1,5 @@
 package maxzonov.vkapi_sandbox.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -26,6 +25,9 @@ class ProfileActivity : BaseActivity() {
 
     companion object {
         private const val DELAY_BETWEEN_BACK_PRESSED: Long = 2000
+
+        private const val SEX_FEMALE = 1
+        private const val ONLINE = 1
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,7 +107,7 @@ class ProfileActivity : BaseActivity() {
     }
 
     private fun showOnlineStatus(profile: Profile) {
-        if (profile.online == 1) {
+        if (profile.online == ONLINE) {
             tv_profile_online.text = getString(R.string.profile_online)
         } else {
             showLastSeen(profile)
@@ -116,7 +118,7 @@ class ProfileActivity : BaseActivity() {
         val lastSeenDay = DateFormatter.convertDateToDayString(profile.lastSeen.time)
         val lastSeenTime = DateFormatter.convertDateToTimeString(profile.lastSeen.time)
 
-        if (profile.sex == 1)
+        if (profile.sex == SEX_FEMALE)
             tv_profile_online.text = getString(R.string.profile_last_seen_woman, lastSeenDay, lastSeenTime)
         else
             tv_profile_online.text = getString(R.string.profile_last_seen_man, lastSeenDay, lastSeenTime)

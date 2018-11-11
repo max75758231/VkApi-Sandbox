@@ -1,10 +1,8 @@
 package maxzonov.vkapi_sandbox.ui
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.edit
 import kotlinx.android.synthetic.main.activity_settings.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.utils.PrefsHelper
@@ -26,8 +24,10 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun clearSetting() {
-        PrefsHelper.write(PrefsHelper.TOKEN, "")
-        PrefsHelper.write(PrefsHelper.ID_USER, 0)
+        with(PrefsHelper) {
+            write(PrefsHelper.TOKEN, "")
+            write(PrefsHelper.ID_USER, 0)
+        }
     }
 
     private fun exitToStartActivity() {
