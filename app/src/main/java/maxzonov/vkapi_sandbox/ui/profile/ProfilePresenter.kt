@@ -1,0 +1,25 @@
+package maxzonov.vkapi_sandbox.ui.profile
+
+import maxzonov.vkapi_sandbox.data.Profile
+
+class ProfilePresenter(private var view: ProfileActivity?, private val interactor: ProfileInteractor) : ProfileInteractor.OnLoadingResultListener {
+
+    fun getProfileData() {
+        view?.showProgress()
+        interactor.getProfileDataFromNetwork(this)
+    }
+
+    fun onViewDestroyed() {
+        view = null
+    }
+
+    override fun onResultSuccess(profile: Profile) {
+        view?.hideProgress()
+        view?.showData(profile)
+    }
+
+    override fun onResultFail(errorStr: String) {
+        view?.hideProgress()
+        view?.showDataError(errorStr)
+    }
+}

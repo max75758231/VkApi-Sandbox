@@ -19,9 +19,10 @@ import maxzonov.vkapi_sandbox.data.Profile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 import maxzonov.vkapi_sandbox.utils.PrefsHelper
 
-class ProfileActivity : BaseActivity() {
+class ProfileActivity : BaseActivity(), ProfileView {
 
     private var isBackButtonClicked = false
+    private lateinit var profilePresenter: ProfilePresenter
 
     companion object {
         private const val DELAY_BETWEEN_BACK_PRESSED: Long = 2000
@@ -34,31 +35,18 @@ class ProfileActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        layout_profile_progressbar.visibility = View.VISIBLE
+        profilePresenter = ProfilePresenter(this, ProfileInteractor())
 
-        val userId = PrefsHelper.read(PrefsHelper.ID_USER, 0).toString()
-        val token = PrefsHelper.read(PrefsHelper.TOKEN, "")
-
-        val compositeDisposable = CompositeDisposable()
-        val apiService: ApiService = RetrofitClient.getApiService()
-
-        compositeDisposable.add(
-                apiService
-                        .getInitialProfileResponse
-                        (
-                            Constants.VK_METHOD_USERS,
-                            userId,
-                            Constants.VK_FIELDS_PROFILE,
-                            token!!,
-                            Constants.VK_API_VERSION
-                        )
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(this::handleResponseSuccess, this::handleResponseError)
-        )
+        profilePresenter.getProfileData()
 
         btn_profile_expand_info.setOnClickListener {
             Toast.makeText(this, "Скоро здесь будет информация", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        profilePresenter.getProfileData()
     }
 
     override fun onBackPressed() {
@@ -70,6 +58,11 @@ class ProfileActivity : BaseActivity() {
         requestPressBackButtonAgain()
     }
 
+    override fun onDestroy() {
+        profilePresenter.onViewDestroyed()
+        super.onDestroy()
+    }
+
     private fun requestPressBackButtonAgain() {
         isBackButtonClicked = true
         Toast.makeText(this, getString(R.string.general_back_button), Toast.LENGTH_SHORT).show()
@@ -79,13 +72,7 @@ class ProfileActivity : BaseActivity() {
         }, DELAY_BETWEEN_BACK_PRESSED)
     }
 
-    private fun handleResponseSuccess(response: Response) {
-        val profile: Profile = response.profiles[0]
-
-        showProfileInfo(profile)
-    }
-
-    private fun showProfileInfo(profile: Profile) {
+    override fun showData(profile: Profile) {
         showFullName(profile)
         tv_profile_bdate.text = profile.birthDate
         tv_profile_hometown.text = profile.homeTown
@@ -96,8 +83,10 @@ class ProfileActivity : BaseActivity() {
         Glide.with(this)
                 .load(profile.photoCropped)
                 .into(iv_profile_ava)
+    }
 
-        layout_profile_progressbar.visibility = View.GONE
+    override fun showDataError(errorStr: String) {
+        Toast.makeText(this, errorStr, Toast.LENGTH_LONG).show()
     }
 
     private fun showFullName(profile: Profile) {
@@ -124,8 +113,11 @@ class ProfileActivity : BaseActivity() {
             tv_profile_online.text = getString(R.string.profile_last_seen_man, lastSeenDay, lastSeenTime)
     }
 
-    private fun handleResponseError(error: Throwable) {
-        Toast.makeText(this, getString(R.string.profile_error), Toast.LENGTH_LONG).show()
-        Log.d("myLog", error.message)
+    override fun showProgress() {
+        layout_profile_progressbar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgress() {
+        layout_profile_progressbar.visibility = View.GONE
     }
 }
