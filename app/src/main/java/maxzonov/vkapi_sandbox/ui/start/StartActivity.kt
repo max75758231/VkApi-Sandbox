@@ -26,8 +26,6 @@ class StartActivity : AppCompatActivity(), StartView {
 
         startPresenter = StartPresenter(this, StartInteractor())
 
-        PrefsHelper.init(applicationContext)
-
         btn_sign_in.setOnClickListener {
             btn_sign_in.visibility = View.GONE
             pb_start.visibility = View.VISIBLE
