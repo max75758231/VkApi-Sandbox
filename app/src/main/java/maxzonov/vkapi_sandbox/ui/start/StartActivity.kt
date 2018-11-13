@@ -16,11 +16,15 @@ import maxzonov.vkapi_sandbox.ui.profile.ProfileActivity
 import maxzonov.vkapi_sandbox.utils.Constants
 import maxzonov.vkapi_sandbox.utils.PrefsHelper
 
-class StartActivity : AppCompatActivity() {
+class StartActivity : AppCompatActivity(), StartView {
+
+    private lateinit var startPresenter: StartPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
+
+        startPresenter = StartPresenter(this, StartInteractor())
 
         PrefsHelper.init(applicationContext)
 
@@ -36,14 +40,20 @@ class StartActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        startPresenter.onViewDestroyed()
+        super.onDestroy()
+    }
+
     private fun setupWebview(authUrl: String, wvClient: WebViewClient) {
+        showWebview()
         with(webview_login) {
             settings.javaScriptEnabled = true
             isVerticalScrollBarEnabled = false
             isHorizontalScrollBarEnabled = false
             clearCache(true)
 
-            visibility = View.VISIBLE
+//            visibility = View.VISIBLE
             webViewClient = wvClient
             loadUrl(authUrl)
         }
@@ -61,51 +71,41 @@ class StartActivity : AppCompatActivity() {
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
 
-            url?.let { getParamsFromVkRedirectUrl(it) }
-        }
-    }
-
-    private fun getParamsFromVkRedirectUrl(url: String) {
-
-        pb_start.visibility = View.VISIBLE
-
-        Log.d("myLog", "url: $url")
-
-        if (url.startsWith(Constants.VK_REDIRECT_URI) && !url.contains("access_denied")) {
-            val urlModified = url.replace('#', '?')
-
-            val accessToken: String? = Uri.parse(urlModified).getQueryParameter("access_token")
-            val userId: Long? = Uri.parse(urlModified).getQueryParameter("user_id").toLong()
-
-            if (accessToken != null && userId != null) {
-                writeParamsAndStartActivity(accessToken, userId)
+            url?.let {
+                startPresenter.loginToVk(it)
             }
-        } else if (url.startsWith(Constants.VK_AUTHORIZE_URI)) {
-            pb_start.visibility = View.GONE
-        } else {
-            btn_sign_in.visibility = View.VISIBLE
-            pb_start.visibility = View.GONE
-            Toast.makeText(this, "Вернулся неверный url", Toast.LENGTH_LONG).show()
-            return
         }
     }
 
-    private fun writeParamsAndStartActivity(accessToken: String, userId: Long) {
-        writeParamsToPrefs(accessToken, userId)
+    override fun showVkButton() {
+        btn_sign_in.visibility = View.VISIBLE
+    }
 
+    override fun hideVkButton() {
+        btn_sign_in.visibility = View.GONE
+    }
+
+    override fun showProgress() {
+        pb_start.visibility = View.VISIBLE
+    }
+
+    override fun hideProgress() {
+        pb_start.visibility = View.GONE
+    }
+
+    override fun showWebview() {
+        webview_login.visibility = View.VISIBLE
+    }
+
+    override fun hideWebview() {
         webview_login.visibility = View.GONE
+    }
 
+    override fun startAppActivity() {
         val intent = Intent(this, ProfileActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         overridePendingTransition(R.anim.move_right_activity_out, R.anim.move_left_activity_in)
         finish()
-    }
-
-    private fun writeParamsToPrefs(token: String, userId: Long) {
-        with(PrefsHelper) {
-            write(PrefsHelper.TOKEN, token)
-            write(PrefsHelper.ID_USER, userId)
-        }
     }
 }
