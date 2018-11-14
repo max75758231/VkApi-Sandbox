@@ -22,9 +22,15 @@ android {
 }
 
 ext {
-    androidXLibraryVersion = "1.0.0"
-    materialVersion = "1.1.0-alpha01"
+    // AndroidX Pack
+    appCompatVersion = "1.0.2"
+    vectorDrawableVersion = "1.0.1"
+    coreKtxVersion = "1.0.1"
     constraintVersion = "2.0.0-alpha2"
+    materialVersion = "1.1.0-alpha01"
+    cardViewVersion = "1.0.0"
+    recyclerVersion = "1.0.0"
+
     junitVersion = "4.12"
     retrofitVersion = "2.3.0"
     gsonVersion = "2.8.0"
@@ -42,13 +48,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "androidx.appcompat:appcompat:$androidXLibraryVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
     implementation "com.google.android.material:material:$materialVersion"
-    implementation "androidx.vectordrawable:vectordrawable:$androidXLibraryVersion"
-    implementation "androidx.cardview:cardview:$androidXLibraryVersion"
-    implementation "androidx.recyclerview:recyclerview:$androidXLibraryVersion"
-    implementation "androidx.core:core-ktx:$androidXLibraryVersion"
+    implementation "androidx.vectordrawable:vectordrawable:$vectorDrawableVersion"
+    implementation "androidx.cardview:cardview:$cardViewVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerVersion"
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
 
     implementation "com.google.code.gson:gson:$gsonVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
