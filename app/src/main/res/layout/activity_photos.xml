@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.photos.PhotosActivity">
+    android:layout_marginLeft="@dimen/general_spacing_8dp"
+    android:layout_marginRight="@dimen/general_spacing_8dp"
+    android:layout_marginTop="@dimen/general_spacing_16dp">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_photos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
