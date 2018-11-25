@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_photo.view.*
 import android.view.LayoutInflater
+import android.widget.ImageView
 import maxzonov.vkapi_sandbox.R
-
 
 class PhotosAdapter (val context: Context, val photos: ArrayList<String>) : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
 
@@ -29,8 +29,6 @@ class PhotosAdapter (val context: Context, val photos: ArrayList<String>) : Recy
     }
 
     class PhotosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        val ivPhoto = itemView.iv_item_photo
-
+        val ivPhoto: ImageView = itemView.iv_item_photo
     }
 }
