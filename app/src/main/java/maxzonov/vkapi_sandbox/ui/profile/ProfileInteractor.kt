@@ -48,7 +48,7 @@ class ProfileInteractor {
     }
 
     private fun handleResponseError(error: Throwable) {
-        Log.d("myLog", error.message)
+        Log.e("myLog", error.message)
         onLoadingResultListener.onResultFail(error.message.toString())
     }
 }
