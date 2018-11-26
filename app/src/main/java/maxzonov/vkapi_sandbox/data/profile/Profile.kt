@@ -1,4 +1,4 @@
-package maxzonov.vkapi_sandbox.data
+package maxzonov.vkapi_sandbox.data.profile
 
 import com.google.gson.annotations.SerializedName
 

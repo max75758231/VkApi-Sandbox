@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_profile.*
 import maxzonov.vkapi_sandbox.R
 import android.widget.Toast
 import maxzonov.vkapi_sandbox.ui.base.BaseActivity
-import maxzonov.vkapi_sandbox.data.Profile
+import maxzonov.vkapi_sandbox.data.profile.Profile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 
 class ProfileActivity : BaseActivity(), ProfileView {
