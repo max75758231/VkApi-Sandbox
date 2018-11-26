@@ -4,7 +4,7 @@ import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import maxzonov.vkapi_sandbox.data.profile.Profile
-import maxzonov.vkapi_sandbox.data.profile.Response
+import maxzonov.vkapi_sandbox.data.profile.ResponseProfile
 import maxzonov.vkapi_sandbox.retrofit.ApiServiceProfile
 import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
 import maxzonov.vkapi_sandbox.utils.Constants
@@ -42,7 +42,7 @@ class ProfileInteractor {
         )
     }
 
-    private fun handleResponseSuccess(response: Response) {
+    private fun handleResponseSuccess(response: ResponseProfile) {
         val profile: Profile = response.profiles[0]
         onLoadingResultListener.onResultSuccess(profile)
     }

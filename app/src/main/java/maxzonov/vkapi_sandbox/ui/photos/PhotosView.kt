@@ -1,9 +1,11 @@
 package maxzonov.vkapi_sandbox.ui.photos
 
+import maxzonov.vkapi_sandbox.data.photos.Photo
+
 interface PhotosView {
 
     fun showProgress()
     fun hideProgress()
-    fun showData(photos: ArrayList<String>)
+    fun showData(photos: ArrayList<Photo>)
     fun showDataError(errorStr: String)
 }

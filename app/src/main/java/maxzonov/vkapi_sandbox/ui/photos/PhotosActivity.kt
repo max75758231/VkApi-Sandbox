@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_photos.*
 import maxzonov.vkapi_sandbox.R
+import maxzonov.vkapi_sandbox.data.photos.Photo
 import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 
 class PhotosActivity : BaseActivity(), PhotosView {
@@ -15,7 +16,7 @@ class PhotosActivity : BaseActivity(), PhotosView {
         setContentView(R.layout.activity_photos)
     }
 
-    override fun showData(photos: ArrayList<String>) {
+    override fun showData(photos: ArrayList<Photo>) {
         val adapter = PhotosAdapter(this, photos)
         rv_photos.layoutManager = LinearLayoutManager(this)
         rv_photos.adapter = adapter

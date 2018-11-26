@@ -9,8 +9,9 @@ import kotlinx.android.synthetic.main.item_photo.view.*
 import android.view.LayoutInflater
 import android.widget.ImageView
 import maxzonov.vkapi_sandbox.R
+import maxzonov.vkapi_sandbox.data.photos.Photo
 
-class PhotosAdapter (val context: Context, val photos: ArrayList<String>) : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
+class PhotosAdapter (val context: Context, val photos: ArrayList<Photo>) : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotosViewHolder {
         val itemView = LayoutInflater.from(parent.context)

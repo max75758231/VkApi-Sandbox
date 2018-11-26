@@ -3,6 +3,9 @@ package maxzonov.vkapi_sandbox.ui.photos
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import maxzonov.vkapi_sandbox.data.photos.Photo
+import maxzonov.vkapi_sandbox.data.photos.Photos
+import maxzonov.vkapi_sandbox.data.photos.ResponsePhotos
 import maxzonov.vkapi_sandbox.retrofit.ApiServicePhoto
 import maxzonov.vkapi_sandbox.retrofit.ApiServiceProfile
 import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
@@ -12,7 +15,7 @@ import maxzonov.vkapi_sandbox.utils.PrefsHelper
 class PhotosInteractor {
 
     interface OnLoadingResultListener {
-        fun onResultSuccess(photos: ArrayList<String>)
+        fun onResultSuccess(photos: ArrayList<Photo>)
         fun onResultFail(errorStr: String)
     }
 
@@ -40,8 +43,9 @@ class PhotosInteractor {
         )
     }
 
-    private fun handleResponseSuccess() {
-
+    private fun handleResponseSuccess(response: ResponsePhotos) {
+        val photos: ArrayList<Photo> = response.photos[0].photos
+        onLoadingResultListener.onResultSuccess(photos)
     }
 
     private fun handleResponseError(error: Throwable) {
