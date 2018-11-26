@@ -2,22 +2,14 @@ package maxzonov.vkapi_sandbox.ui.profile
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_profile.*
 import maxzonov.vkapi_sandbox.R
-import maxzonov.vkapi_sandbox.data.Response
-import maxzonov.vkapi_sandbox.retrofit.ApiService
-import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
-import maxzonov.vkapi_sandbox.utils.Constants
 import android.widget.Toast
 import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 import maxzonov.vkapi_sandbox.data.Profile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
-import maxzonov.vkapi_sandbox.utils.PrefsHelper
 
 class ProfileActivity : BaseActivity(), ProfileView {
 

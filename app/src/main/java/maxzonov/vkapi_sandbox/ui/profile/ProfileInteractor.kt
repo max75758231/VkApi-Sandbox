@@ -5,7 +5,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import maxzonov.vkapi_sandbox.data.Profile
 import maxzonov.vkapi_sandbox.data.Response
-import maxzonov.vkapi_sandbox.retrofit.ApiService
+import maxzonov.vkapi_sandbox.retrofit.ApiServiceProfile
 import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
 import maxzonov.vkapi_sandbox.utils.Constants
 import maxzonov.vkapi_sandbox.utils.PrefsHelper
@@ -24,7 +24,7 @@ class ProfileInteractor {
         val token = PrefsHelper.read(PrefsHelper.TOKEN, "")
 
         val compositeDisposable = CompositeDisposable()
-        val apiService: ApiService = RetrofitClient.getApiService()
+        val apiService: ApiServiceProfile = RetrofitClient.getProfileApiService()
         this.onLoadingResultListener = onLoadingResultListener
 
         compositeDisposable.add(

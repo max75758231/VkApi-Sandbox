@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface ApiService {
+interface ApiServiceProfile {
 
     @GET("{method}?")
     fun getInitialProfileResponse(@Path("method") method: String,

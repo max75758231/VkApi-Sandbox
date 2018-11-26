@@ -20,9 +20,12 @@ class RetrofitClient {
                 .addConverterFactory(gsonConverterFactory)
                 .build()
 
-        fun getApiService(): ApiService {
-            return retrofitInstance.create(ApiService::class.java)
+        fun getProfileApiService(): ApiServiceProfile {
+            return retrofitInstance.create(ApiServiceProfile::class.java)
+        }
+
+        fun getPhotoApiService(): ApiServicePhoto {
+            return retrofitInstance.create(ApiServicePhoto::class.java)
         }
     }
-
 }
