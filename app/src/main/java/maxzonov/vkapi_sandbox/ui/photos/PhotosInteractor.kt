@@ -29,13 +29,15 @@ class PhotosInteractor {
         val apiService: ApiServicePhoto = RetrofitClient.getPhotoApiService()
         this.onLoadingResultListener = onLoadingResultListener
 
+        Log.d("myLog", token)
         compositeDisposable.add(
                 apiService
-                        .getInitialProfileResponse
+                        .getPhotoResponse
                         (
                                 Constants.VK_METHOD_PHOTOS,
                                 userId,
                                 token!!,
+                                "profile",
                                 Constants.VK_API_VERSION
                         )
                         .observeOn(AndroidSchedulers.mainThread())
@@ -44,12 +46,12 @@ class PhotosInteractor {
     }
 
     private fun handleResponseSuccess(response: ResponsePhotos) {
-        val photos: ArrayList<Photo> = response.photos[0].photos
+        val photos: ArrayList<Photo> = response.photos.photos
         onLoadingResultListener.onResultSuccess(photos)
     }
 
     private fun handleResponseError(error: Throwable) {
-        Log.d("myLog", error.message)
+        Log.e("myLog", error.message)
         onLoadingResultListener.onResultFail(error.message.toString())
     }
 }

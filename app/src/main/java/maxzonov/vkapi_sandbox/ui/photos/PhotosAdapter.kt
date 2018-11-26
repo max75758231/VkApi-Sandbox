@@ -25,7 +25,7 @@ class PhotosAdapter (val context: Context, val photos: ArrayList<Photo>) : Recyc
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
         Glide.with(context)
-                .load(photos[position])
+                .load(photos[position].photoSizes[0].url)
                 .into(holder.ivPhoto)
     }
 

@@ -11,9 +11,20 @@ import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 
 class PhotosActivity : BaseActivity(), PhotosView {
 
+    private lateinit var photosPresenter: PhotosPresenter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photos)
+
+        photosPresenter = PhotosPresenter(this, PhotosInteractor())
+
+        photosPresenter.getPhotosData()
+    }
+
+    override fun onDestroy() {
+        photosPresenter.onViewDestroyed()
+        super.onDestroy()
     }
 
     override fun showData(photos: ArrayList<Photo>) {

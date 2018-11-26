@@ -10,8 +10,9 @@ import retrofit2.http.Query
 interface ApiServicePhoto {
 
     @GET("{method}?")
-    fun getInitialProfileResponse(@Path("method") method: String,
-                                  @Query("owner_id") userId: String,
-                                  @Query("access_token") token: String,
-                                  @Query("v") version: String) : Observable<ResponsePhotos>
+    fun getPhotoResponse(@Path("method") method: String,
+                         @Query("owner_id") userId: String,
+                         @Query("access_token") token: String,
+                         @Query("album_id") albumId: String,
+                         @Query("v") version: String): Observable<ResponsePhotos>
 }
