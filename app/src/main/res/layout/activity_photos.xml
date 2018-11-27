@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/general_spacing_8dp"
     android:paddingRight="@dimen/general_spacing_8dp"
-    android:paddingTop="@dimen/general_spacing_16dp">
+    android:paddingTop="@dimen/general_spacing_8dp">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_photos"
