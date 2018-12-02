@@ -18,7 +18,6 @@ class PhotosActivity : BaseActivity(), PhotosView {
         setContentView(R.layout.activity_photos)
 
         photosPresenter = PhotosPresenter(this, PhotosInteractor())
-
         photosPresenter.getPhotosData()
     }
 

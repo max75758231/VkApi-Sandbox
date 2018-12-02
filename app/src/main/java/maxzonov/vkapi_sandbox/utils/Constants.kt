@@ -15,6 +15,7 @@ class Constants {
 
         const val VK_METHOD_USERS = "users.get"
         const val VK_METHOD_PHOTOS = "photos.get"
+        const val VK_METHOD_GROUPS = "groups.get"
 
         const val VK_FIELDS_PROFILE = "sex, online, home_town, bdate, photo_max, last_seen, education"
     }

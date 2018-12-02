@@ -27,5 +27,9 @@ class RetrofitClient {
         fun getPhotoApiService(): ApiServicePhoto {
             return retrofitInstance.create(ApiServicePhoto::class.java)
         }
+
+        fun getGroupsApiService(): ApiServiceGroups {
+            return retrofitInstance.create(ApiServiceGroups::class.java)
+        }
     }
 }
