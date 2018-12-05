@@ -8,6 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_group.view.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.data.groups.Group
@@ -32,8 +35,10 @@ class GroupsAdapter (val context: Context, val groups: ArrayList<Group>) : Recyc
 
     private fun setPhoto(holder: GroupsViewHolder,url: String) {
         Glide.with(context)
-                .load(url)
-                .into(holder.ivPhoto)
+            .load(url)
+            .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.RESOURCE)) // Cache only final image
+            .apply(RequestOptions.bitmapTransform(RoundedCorners(8)))
+            .into(holder.ivPhoto)
     }
 
     class GroupsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
