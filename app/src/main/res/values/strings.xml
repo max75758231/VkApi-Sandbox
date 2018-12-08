@@ -19,4 +19,13 @@
     <string name="menu_documents">Документы</string>
     <string name="menu_photos">Фотографии</string>
     <string name="menu_groups">Группы</string>
+
+    <!-- Documents strings -->
+    <string name="docs_all">Все</string>
+    <string name="docs_anims">Анимации</string>
+    <string name="docs_archives">Архивы</string>
+    <string name="docs_video">Видео</string>
+    <string name="docs_pics">Изображения</string>
+    <string name="docs_text">Текстовые</string>
+    <string name="docs_others">Прочие</string>
 </resources>
