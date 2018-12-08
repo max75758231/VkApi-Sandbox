@@ -14,12 +14,11 @@ class ProfilePresenter(private var view: ProfileActivity?, private val interacto
     }
 
     override fun onResultSuccess(profile: Profile) {
-        view?.hideProgress()
         view?.showData(profile)
     }
 
     override fun onResultFail(errorStr: String) {
-        view?.hideProgress()
         view?.showDataError(errorStr)
+        view?.hideProgress()
     }
 }

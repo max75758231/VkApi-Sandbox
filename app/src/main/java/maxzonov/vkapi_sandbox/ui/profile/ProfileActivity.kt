@@ -75,6 +75,8 @@ class ProfileActivity : BaseActivity(), ProfileView {
         Glide.with(this)
                 .load(profile.photoCropped)
                 .into(iv_profile_ava)
+
+        hideProgress()
     }
 
     override fun showDataError(errorStr: String) {
