@@ -7,5 +7,5 @@ data class Doc(
     @SerializedName("size") val size: Long,
     @SerializedName("url") val url: String,
     @SerializedName("date") val date: Long,
-    @SerializedName("type") val type: Short
+    @SerializedName("type") val type: Int
 )

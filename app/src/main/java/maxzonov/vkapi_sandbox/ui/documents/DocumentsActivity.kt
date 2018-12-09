@@ -3,8 +3,10 @@ package maxzonov.vkapi_sandbox.ui.documents
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_documents.*
 import maxzonov.vkapi_sandbox.R
+import maxzonov.vkapi_sandbox.data.docs.Doc
 import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 
 class DocumentsActivity : BaseActivity(), DocumentsView {
@@ -24,8 +26,10 @@ class DocumentsActivity : BaseActivity(), DocumentsView {
         super.onDestroy()
     }
 
-    override fun showData() {
-
+    override fun showData(docs: ArrayList<Doc>) {
+        val adapter = DocumentsAdapter(this, docs)
+        rv_docs.layoutManager = LinearLayoutManager(this)
+        rv_docs.adapter = adapter
     }
 
     override fun showDataError(errorStr: String) {
