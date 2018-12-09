@@ -30,10 +30,6 @@ class ProfileActivity : BaseActivity(), ProfileView {
         profilePresenter = ProfilePresenter(this, ProfileInteractor())
 
         profilePresenter.getProfileData()
-
-        btn_profile_expand_info.setOnClickListener {
-            Toast.makeText(this, "Скоро здесь будет информация", Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onResume() {
