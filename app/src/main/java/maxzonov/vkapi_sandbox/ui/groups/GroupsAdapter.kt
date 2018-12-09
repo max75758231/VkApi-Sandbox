@@ -29,7 +29,7 @@ class GroupsAdapter (val context: Context, val groups: ArrayList<Group>) : Recyc
 
     override fun onBindViewHolder(holder: GroupsViewHolder, position: Int) {
 
-        setPhoto(holder, groups[position].groupPhotoUrl);
+        setPhoto(holder, groups[position].groupPhotoUrl)
         holder.tvName.text = groups[position].groupName
     }
 

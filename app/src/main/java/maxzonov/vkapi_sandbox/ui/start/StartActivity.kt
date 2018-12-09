@@ -1,20 +1,16 @@
 package maxzonov.vkapi_sandbox.ui.start
 
 import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_start.*
 import maxzonov.vkapi_sandbox.R
-import android.graphics.Bitmap
-import android.util.Log
 import maxzonov.vkapi_sandbox.ui.profile.ProfileActivity
 import maxzonov.vkapi_sandbox.utils.Constants
-import maxzonov.vkapi_sandbox.utils.PrefsHelper
 
 class StartActivity : AppCompatActivity(), StartView {
 

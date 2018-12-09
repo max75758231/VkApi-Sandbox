@@ -4,10 +4,8 @@ import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import maxzonov.vkapi_sandbox.data.photos.Photo
-import maxzonov.vkapi_sandbox.data.photos.Photos
 import maxzonov.vkapi_sandbox.data.photos.ResponsePhotos
 import maxzonov.vkapi_sandbox.retrofit.ApiServicePhoto
-import maxzonov.vkapi_sandbox.retrofit.ApiServiceProfile
 import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
 import maxzonov.vkapi_sandbox.utils.Constants
 import maxzonov.vkapi_sandbox.utils.PrefsHelper

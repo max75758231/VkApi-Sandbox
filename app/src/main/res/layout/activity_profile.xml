@@ -155,18 +155,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_profile_current_school" />
 
-    <Button
-        android:id="@+id/btn_profile_expand_info"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorWhite"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/profile_expand_info"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
