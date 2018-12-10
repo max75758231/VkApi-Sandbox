@@ -16,7 +16,7 @@ class DocumentsPresenter (private var view: DocumentsActivity?, private val inte
 
     override fun onResultSuccess(docs: ArrayList<Doc>) {
         view?.hideProgress()
-        view?.showData(docs)
+        view?.showDataFromServer(docs)
     }
 
     override fun onResultFail(errorStr: String) {

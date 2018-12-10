@@ -21,6 +21,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_docs_all"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,6 +30,7 @@
                 android:text="@string/docs_all" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_docs_anims"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,6 +38,7 @@
                 android:text="@string/docs_anims" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_docs_archives"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,6 +46,15 @@
                 android:text="@string/docs_archives" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_docs_audio"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipBackgroundColor="#0D232F34"
+                android:text="@string/docs_audio" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_docs_video"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,6 +62,7 @@
                 android:text="@string/docs_video" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_docs_images"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,6 +70,7 @@
                 android:text="@string/docs_pics" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_docs_text"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,6 +78,7 @@
                 android:text="@string/docs_text" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_docs_others"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
