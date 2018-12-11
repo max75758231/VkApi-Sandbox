@@ -16,7 +16,7 @@ class PhotosPresenter (private var view: PhotosActivity?, private val interactor
 
     override fun onResultSuccess(photos: ArrayList<Photo>) {
         view?.hideProgress()
-        view?.showData(photos)
+        view?.showDataWithRecyclerView(photos)
     }
 
     override fun onResultFail(errorStr: String) {

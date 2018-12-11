@@ -6,6 +6,6 @@ interface PhotosView {
 
     fun showProgress()
     fun hideProgress()
-    fun showData(photos: ArrayList<Photo>)
+    fun showDataWithRecyclerView(photos: ArrayList<Photo>)
     fun showDataError(errorStr: String)
 }

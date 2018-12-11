@@ -12,4 +12,10 @@
         android:icon="@drawable/ic_general_settings"
         android:title="Настройки"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/photos_action_view"
+        android:icon="@drawable/ic_photos_grid"
+        android:title="Тип списка"
+        app:showAsAction="ifRoom" />
 </menu>
