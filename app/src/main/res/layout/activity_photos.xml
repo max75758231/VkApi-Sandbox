@@ -5,14 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/general_spacing_8dp"
-    android:paddingRight="@dimen/general_spacing_8dp"
-    android:paddingTop="@dimen/general_spacing_8dp">
+    android:paddingLeft="@dimen/general_spacing_4dp"
+    android:paddingRight="@dimen/general_spacing_4dp"
+    android:paddingTop="@dimen/general_spacing_4dp">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_photos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <GridView
         android:id="@+id/gridview_photos"

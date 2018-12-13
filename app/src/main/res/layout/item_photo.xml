@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="300dp"
-    android:paddingBottom="@dimen/general_spacing_8dp">
+    android:paddingBottom="@dimen/general_spacing_4dp">
 
     <ImageView
         android:id="@+id/iv_item_photo"
