@@ -4,5 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Photo(
         @SerializedName("data") val photoDate: String,
-        @SerializedName("sizes") val photoSizes: ArrayList<PhotoSize>
+        @SerializedName("sizes") val photoSizes: ArrayList<PhotoSize>,
+        @SerializedName("likes") val photoLikes: Like,
+        @SerializedName("reposts") val photoReposts: Repost,
+        @SerializedName("comments") val photoComments: Comment
 )

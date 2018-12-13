@@ -19,5 +19,8 @@ class Constants {
         const val VK_METHOD_DOCS = "docs.get"
 
         const val VK_FIELDS_PROFILE = "sex, online, home_town, bdate, photo_max, last_seen, education"
+
+        const val VK_PHOTOS_EXTENDED = "1"
+        const val VK_PHOTOS_NOT_EXTENDED = "0"
     }
 }

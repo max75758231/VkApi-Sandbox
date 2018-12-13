@@ -13,5 +13,6 @@ interface ApiServicePhoto {
                          @Query("owner_id") userId: String,
                          @Query("access_token") token: String,
                          @Query("album_id") albumId: String,
+                         @Query("extended") isExtended: String,
                          @Query("v") version: String): Observable<ResponsePhotos>
 }
