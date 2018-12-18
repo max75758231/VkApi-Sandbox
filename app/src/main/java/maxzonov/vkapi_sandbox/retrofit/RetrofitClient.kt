@@ -24,6 +24,10 @@ class RetrofitClient {
             return retrofitInstance.create(ApiServiceProfile::class.java)
         }
 
+        fun getWallApiService(): ApiServiceWall {
+            return retrofitInstance.create(ApiServiceWall::class.java)
+        }
+
         fun getPhotoApiService(): ApiServicePhoto {
             return retrofitInstance.create(ApiServicePhoto::class.java)
         }

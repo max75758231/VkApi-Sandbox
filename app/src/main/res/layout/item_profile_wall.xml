@@ -35,7 +35,6 @@
         android:id="@+id/tv_wall_item_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         tools:text="18 декабря 23:23"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +45,7 @@
         android:id="@+id/tv_wall_item_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/general_spacing_4dp"
         android:layout_marginEnd="8dp"
         tools:text="Текст какой-то тестовый для верстки самой лучшей верстки на свете"
         android:textColor="@color/colorBlack"
@@ -91,15 +90,20 @@
         android:drawableLeft="@drawable/ic_general_comment_blue"
         android:drawablePadding="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_wall_item_like"
-        app:layout_constraintEnd_toStartOf="@+id/iv_wall_item_repost"
+        app:layout_constraintEnd_toStartOf="@+id/tv_wall_item_repost"
         app:layout_constraintStart_toEndOf="@+id/tv_wall_item_like" />
 
-    <ImageView
-        android:id="@+id/iv_wall_item_repost"
+    <TextView
+        android:id="@+id/tv_wall_item_repost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_general_repost_blue"
+        tools:text="99"
+        android:textSize="16sp"
+        android:textColor="@color/colorBlack"
+        android:drawableLeft="@drawable/ic_general_repost_blue"
+        android:drawablePadding="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_wall_item_comment"
         app:layout_constraintEnd_toEndOf="@+id/iv_wall_item_image" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,8 +7,11 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_profile.*
 import maxzonov.vkapi_sandbox.R
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 import maxzonov.vkapi_sandbox.data.profile.Profile
+import maxzonov.vkapi_sandbox.data.wall.WallPost
+import maxzonov.vkapi_sandbox.ui.wall.WallPostsAdapter
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 
 class ProfileActivity : BaseActivity(), ProfileView {
@@ -60,7 +63,7 @@ class ProfileActivity : BaseActivity(), ProfileView {
         }, DELAY_BETWEEN_BACK_PRESSED)
     }
 
-    override fun showData(profile: Profile) {
+    override fun showProfileDataInfo(profile: Profile) {
         showFullName(profile)
         tv_profile_bdate.text = profile.birthDate
         tv_profile_hometown.text = profile.homeTown
@@ -73,6 +76,12 @@ class ProfileActivity : BaseActivity(), ProfileView {
                 .into(iv_profile_ava)
 
         hideProgress()
+    }
+
+    override fun showProfileWallPosts(wallPosts: ArrayList<WallPost>) {
+        val adapter = WallPostsAdapter(this, wallPosts)
+        rv_profile_wall.layoutManager = LinearLayoutManager(this)
+        rv_profile_wall.adapter = adapter
     }
 
     override fun showDataError(errorStr: String) {

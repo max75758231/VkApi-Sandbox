@@ -36,7 +36,7 @@ class PhotosInteractor {
                                 userId,
                                 token!!,
                                 "profile",
-                                Constants.VK_PHOTOS_EXTENDED,
+                                Constants.VK_EXTENDED,
                                 Constants.VK_API_VERSION
                         )
                         .observeOn(AndroidSchedulers.mainThread())
