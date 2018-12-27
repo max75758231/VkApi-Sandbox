@@ -7,6 +7,7 @@ import maxzonov.vkapi_sandbox.data.profile.Profile
 import maxzonov.vkapi_sandbox.data.profile.ResponseProfile
 import maxzonov.vkapi_sandbox.data.wall.ResponseWall
 import maxzonov.vkapi_sandbox.data.wall.WallPost
+import maxzonov.vkapi_sandbox.data.wall.WallProfile
 import maxzonov.vkapi_sandbox.retrofit.ApiServiceProfile
 import maxzonov.vkapi_sandbox.retrofit.ApiServiceWall
 import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
@@ -17,7 +18,7 @@ class ProfileInteractor {
 
     interface OnLoadingResultListener {
         fun onResultSuccess(profile: Profile)
-        fun onResultSuccess(wallPosts: ArrayList<WallPost>)
+        fun onResultSuccess(wallPosts: ArrayList<WallPost>, profiles: ArrayList<WallProfile>)
         fun onResultFail(errorStr: String)
     }
 
@@ -82,7 +83,7 @@ class ProfileInteractor {
 
     private fun handleWallResponseSuccess(response: ResponseWall) {
         val wallPosts: ArrayList<WallPost> = response.wallPosts.responseItems
-        onLoadingResultListener.onResultSuccess(wallPosts)
+        onLoadingResultListener.onResultSuccess(wallPosts, response.wallPosts.profiles)
     }
 
     private fun handleWallResponseError(error: Throwable) {

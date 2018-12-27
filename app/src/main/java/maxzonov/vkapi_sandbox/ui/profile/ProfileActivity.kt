@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 import maxzonov.vkapi_sandbox.data.profile.Profile
 import maxzonov.vkapi_sandbox.data.wall.WallPost
+import maxzonov.vkapi_sandbox.data.wall.WallProfile
 import maxzonov.vkapi_sandbox.ui.wall.WallPostsAdapter
 import maxzonov.vkapi_sandbox.utils.DateFormatter
+import maxzonov.vkapi_sandbox.utils.PrefsHelper
 
 class ProfileActivity : BaseActivity(), ProfileView {
 
@@ -78,8 +80,9 @@ class ProfileActivity : BaseActivity(), ProfileView {
         hideProgress()
     }
 
-    override fun showProfileWallPosts(wallPosts: ArrayList<WallPost>) {
-        val adapter = WallPostsAdapter(this, wallPosts)
+    override fun showProfileWallPosts(wallPosts: ArrayList<WallPost>, profiles: ArrayList<WallProfile>) {
+        var userId: Long = PrefsHelper.read(PrefsHelper.ID_USER, 0)!!
+        val adapter = WallPostsAdapter(this, wallPosts, profiles, userId)
         rv_profile_wall.layoutManager = LinearLayoutManager(this)
         rv_profile_wall.adapter = adapter
     }
