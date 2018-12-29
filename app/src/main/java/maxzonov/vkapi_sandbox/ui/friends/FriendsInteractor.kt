@@ -29,7 +29,7 @@ class FriendsInteractor {
         compositeDisposable.add(
             apiService
                 .getFriendsResponse(
-                    Constants.VK_METHOD_DOCS,
+                    Constants.VK_METHOD_FRIENDS,
                     userId,
                     Constants.VK_FRIENDS_SORT_BY,
                     Constants.VK_FRIENDS_FIELDS,
