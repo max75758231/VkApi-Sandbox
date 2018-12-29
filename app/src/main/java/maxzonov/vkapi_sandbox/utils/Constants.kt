@@ -27,5 +27,8 @@ class Constants {
         const val VK_WALL_FILTER_ALL = "all"
         const val VK_WALL_FILTER_OWNER = "owner"
         const val VK_WALL_FILTER_OTHERS = "others"
+
+        const val VK_FRIENDS_SORT_BY = "name"
+        const val VK_FRIENDS_FIELDS = "domain,photo_100"
     }
 }

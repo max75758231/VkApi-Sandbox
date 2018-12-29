@@ -39,5 +39,9 @@ class RetrofitClient {
         fun getDocsApiService(): ApiServiceDocs {
             return retrofitInstance.create(ApiServiceDocs::class.java)
         }
+
+        fun getFriendsService(): ApiServiceFriends {
+            return retrofitInstance.create(ApiServiceFriends::class.java)
+        }
     }
 }
