@@ -16,7 +16,7 @@ import maxzonov.vkapi_sandbox.data.wall.WallPost
 import maxzonov.vkapi_sandbox.data.wall.WallProfile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 
-class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>, val profiles: ArrayList<WallProfile>, val profileId: Long) : RecyclerView.Adapter<WallPostsAdapter.WallPostsViewHolder>() {
+class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>, val profiles: ArrayList<WallProfile>) : RecyclerView.Adapter<WallPostsAdapter.WallPostsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallPostsViewHolder {
         val itemView = LayoutInflater.from(parent.context)

@@ -81,8 +81,7 @@ class ProfileActivity : BaseActivity(), ProfileView {
     }
 
     override fun showProfileWallPosts(wallPosts: ArrayList<WallPost>, profiles: ArrayList<WallProfile>) {
-        var userId: Long = PrefsHelper.read(PrefsHelper.ID_USER, 0)!!
-        val adapter = WallPostsAdapter(this, wallPosts, profiles, userId)
+        val adapter = WallPostsAdapter(this, wallPosts, profiles)
         rv_profile_wall.layoutManager = LinearLayoutManager(this)
         rv_profile_wall.adapter = adapter
     }
