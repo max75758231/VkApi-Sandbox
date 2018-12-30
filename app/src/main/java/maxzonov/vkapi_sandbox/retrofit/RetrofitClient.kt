@@ -43,5 +43,9 @@ class RetrofitClient {
         fun getFriendsService(): ApiServiceFriends {
             return retrofitInstance.create(ApiServiceFriends::class.java)
         }
+
+        fun getBookmarksService(): ApiServiceBookmarks {
+            return retrofitInstance.create(ApiServiceBookmarks::class.java)
+        }
     }
 }

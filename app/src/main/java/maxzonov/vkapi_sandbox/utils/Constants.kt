@@ -19,6 +19,7 @@ class Constants {
         const val VK_METHOD_DOCS = "docs.get"
         const val VK_METHOD_WALL = "wall.get"
         const val VK_METHOD_FRIENDS = "friends.get"
+        const val VK_METHOD_BOOKMARKS = "fave.getPosts"
 
         const val VK_FIELDS_PROFILE = "sex, online, home_town, bdate, photo_max, last_seen, education"
 
