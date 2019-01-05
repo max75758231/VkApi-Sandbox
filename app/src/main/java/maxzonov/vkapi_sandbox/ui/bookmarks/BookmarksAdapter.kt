@@ -31,9 +31,9 @@ class BookmarksAdapter(val context: Context, val bookmarks: ArrayList<Bookmark>,
 
     override fun onBindViewHolder(holder: BookmarksViewHolder, position: Int) {
         val bookmark: Bookmark = bookmarks[position]
-        var profileName: String = ""
-        var profileSurname: String = ""
-        var profileAvaUrl: String = ""
+        var profileName = ""
+        var profileSurname = ""
+        var profileAvaUrl = ""
         profiles.forEach {
             if (it.id == bookmark.fromId) {
                 profileName = it.firstName

@@ -30,9 +30,9 @@ class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>,
 
     override fun onBindViewHolder(holder: WallPostsViewHolder, position: Int) {
         val wallPost: WallPost = wallPosts[position]
-        var profileName: String = ""
-        var profileSurname: String = ""
-        var profileAvaUrl: String = ""
+        var profileName = ""
+        var profileSurname = ""
+        var profileAvaUrl = ""
         profiles.forEach {
             if (it.id == wallPost.id) {
                 profileName = it.firstName

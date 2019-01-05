@@ -3,18 +3,17 @@ package maxzonov.vkapi_sandbox.ui.profile
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_profile.*
 import maxzonov.vkapi_sandbox.R
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 import maxzonov.vkapi_sandbox.data.profile.Profile
 import maxzonov.vkapi_sandbox.data.wall.WallPost
 import maxzonov.vkapi_sandbox.data.wall.WallProfile
+import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 import maxzonov.vkapi_sandbox.ui.wall.WallPostsAdapter
 import maxzonov.vkapi_sandbox.utils.DateFormatter
-import maxzonov.vkapi_sandbox.utils.PrefsHelper
 
 class ProfileActivity : BaseActivity(), ProfileView {
 

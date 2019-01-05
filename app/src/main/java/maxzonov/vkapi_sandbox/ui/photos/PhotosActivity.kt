@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_photos.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.data.photos.Photo
-import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 import maxzonov.vkapi_sandbox.ui.menu.MenuActivity
 import maxzonov.vkapi_sandbox.ui.settings.SettingsActivity
 
