@@ -45,7 +45,6 @@ class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>,
         holder.tvLike.text = wallPost.likes.likesNumber.toString()
         holder.tvComment.text = wallPost.comments.commentsNumber.toString()
         holder.tvRepost.text = wallPost.reposts.repostsNumber.toString()
-//        holder.tvName.text = "Константин Константинов"
         holder.tvName.text = "$profileName $profileSurname"
         Glide.with(context)
             .load(profileAvaUrl)

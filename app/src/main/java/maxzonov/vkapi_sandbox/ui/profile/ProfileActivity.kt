@@ -80,6 +80,8 @@ class ProfileActivity : BaseActivity(), ProfileView {
     }
 
     override fun showProfileWallPosts(wallPosts: ArrayList<WallPost>, profiles: ArrayList<WallProfile>) {
+        tv_profile_wall_count.text = "Записей на стене: ${wallPosts.size}"
+
         val adapter = WallPostsAdapter(this, wallPosts, profiles)
         rv_profile_wall.layoutManager = LinearLayoutManager(this)
         rv_profile_wall.adapter = adapter
