@@ -12,6 +12,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_profile_wall.view.*
 import maxzonov.vkapi_sandbox.R
+import maxzonov.vkapi_sandbox.data.photos.PhotoSize
+import maxzonov.vkapi_sandbox.data.wall.WallPhoto
 import maxzonov.vkapi_sandbox.data.wall.WallPost
 import maxzonov.vkapi_sandbox.data.wall.WallProfile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
@@ -50,10 +52,25 @@ class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>,
             .load(profileAvaUrl)
             .apply(RequestOptions.bitmapTransform(RoundedCorners(180)))
             .into(holder.ivAvatar)
+        if (wallPost.attachments != null && wallPost.attachments.size != 0) {
+            run loop@{
+                wallPost.attachments.forEach {
+                    if (it.type == "photo") {
+                        val photoSize: PhotoSize = it.photo.photoSizes[it.photo.photoSizes.size - 1]
+                        var url = photoSize.url
+                        Glide.with(context)
+                            .load(url)
+                            .into(holder.ivAttachment)
+                        return@loop
+                    }
+                }
+            }
+        }
     }
 
     class WallPostsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivAvatar: ImageView = itemView.iv_wall_avatar
+        val ivAttachment: ImageView = itemView.iv_wall_item_image
         val tvName: TextView = itemView.tv_wall_item_name
         val tvDate: TextView = itemView.tv_wall_item_date
         val tvText: TextView = itemView.tv_wall_item_text

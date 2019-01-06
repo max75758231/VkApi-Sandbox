@@ -9,6 +9,7 @@ data class WallPost(
     @SerializedName("from_id") val id: Long,
     @SerializedName("text") val text: String,
     @SerializedName("date") val date: Long,
+    @SerializedName("attachments") val attachments: ArrayList<Attachment>,
     @SerializedName("can_delete") val canDelete: Short,
     @SerializedName("can_pin") val canPin: Short,
     @SerializedName("likes") val likes: Like,
