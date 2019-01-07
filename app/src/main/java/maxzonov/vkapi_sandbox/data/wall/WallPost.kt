@@ -8,6 +8,7 @@ import maxzonov.vkapi_sandbox.data.photos.Repost
 data class WallPost(
     @SerializedName("from_id") val id: Long,
     @SerializedName("text") val text: String,
+    @SerializedName("copy_history") val wallRepost: ArrayList<WallPost>,
     @SerializedName("date") val date: Long,
     @SerializedName("attachments") val attachments: ArrayList<Attachment>,
     @SerializedName("can_delete") val canDelete: Short,

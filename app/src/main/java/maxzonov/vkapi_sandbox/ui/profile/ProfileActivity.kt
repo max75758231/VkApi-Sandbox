@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_profile.*
 import maxzonov.vkapi_sandbox.R
+import maxzonov.vkapi_sandbox.data.groups.Group
 import maxzonov.vkapi_sandbox.data.profile.Profile
 import maxzonov.vkapi_sandbox.data.wall.WallPost
 import maxzonov.vkapi_sandbox.data.wall.WallProfile
@@ -79,10 +80,10 @@ class ProfileActivity : BaseActivity(), ProfileView {
         hideProgress()
     }
 
-    override fun showProfileWallPosts(wallPosts: ArrayList<WallPost>, profiles: ArrayList<WallProfile>) {
+    override fun showProfileWallPosts(wallPosts: ArrayList<WallPost>, profiles: ArrayList<WallProfile>, groups: ArrayList<Group>) {
         tv_profile_wall_count.text = "Записей на стене: ${wallPosts.size}"
 
-        val adapter = WallPostsAdapter(this, wallPosts, profiles)
+        val adapter = WallPostsAdapter(this, wallPosts, profiles, groups)
         rv_profile_wall.layoutManager = LinearLayoutManager(this)
         rv_profile_wall.adapter = adapter
     }

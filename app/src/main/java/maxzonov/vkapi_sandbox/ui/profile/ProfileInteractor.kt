@@ -3,6 +3,7 @@ package maxzonov.vkapi_sandbox.ui.profile
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import maxzonov.vkapi_sandbox.data.groups.Group
 import maxzonov.vkapi_sandbox.data.profile.Profile
 import maxzonov.vkapi_sandbox.data.profile.ResponseProfile
 import maxzonov.vkapi_sandbox.data.wall.ResponseWall
@@ -18,7 +19,7 @@ class ProfileInteractor {
 
     interface OnLoadingResultListener {
         fun onResultSuccess(profile: Profile)
-        fun onResultSuccess(wallPosts: ArrayList<WallPost>, profiles: ArrayList<WallProfile>)
+        fun onResultSuccess(wallPosts: ArrayList<WallPost>, profiles: ArrayList<WallProfile>, groups: ArrayList<Group>)
         fun onResultFail(errorStr: String)
     }
 
@@ -83,7 +84,7 @@ class ProfileInteractor {
 
     private fun handleWallResponseSuccess(response: ResponseWall) {
         val wallPosts: ArrayList<WallPost> = response.wallPosts.responseItems
-        onLoadingResultListener.onResultSuccess(wallPosts, response.wallPosts.profiles)
+        onLoadingResultListener.onResultSuccess(wallPosts, response.wallPosts.profiles, response.wallPosts.groups)
     }
 
     private fun handleWallResponseError(error: Throwable) {
