@@ -19,8 +19,8 @@ import maxzonov.vkapi_sandbox.data.wall.WallProfile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 import maxzonov.vkapi_sandbox.utils.ImageViewFormatter
 
-class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>, val profiles: ArrayList<WallProfile>,
-                       val groups: ArrayList<Group>, val imageViewFormatter: ImageViewFormatter) :
+class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<WallPost>, val profiles: ArrayList<WallProfile>,
+                       val groups: ArrayList<Group>, private val imageViewFormatter: ImageViewFormatter) :
     RecyclerView.Adapter<WallPostsAdapter.WallPostsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallPostsViewHolder {
@@ -36,11 +36,20 @@ class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>,
     override fun onBindViewHolder(holder: WallPostsViewHolder, position: Int) {
         val wallPost: WallPost = wallPosts[position]
 
-        holder.tvDate.text = DateFormatter.convertDateToDayString(wallPost.date)
-        holder.tvLike.text = wallPost.likes.likesNumber.toString()
-        holder.tvComment.text = wallPost.comments.commentsNumber.toString()
-        holder.tvRepost.text = wallPost.reposts.repostsNumber.toString()
+        showGeneralInfo(holder, wallPost)
+        showSpecificInformation(holder, wallPost)
+    }
 
+    private fun showGeneralInfo(holder: WallPostsViewHolder, wallPost: WallPost) {
+        with(holder) {
+            tvDate.text = DateFormatter.convertDateToDayString(wallPost.date)
+            tvLike.text = wallPost.likes.likesNumber.toString()
+            tvComment.text = wallPost.comments.commentsNumber.toString()
+            tvRepost.text = wallPost.reposts.repostsNumber.toString()
+        }
+    }
+
+    private fun showSpecificInformation(holder: WallPostsViewHolder, wallPost: WallPost) {
         if (wallPost.wallRepost != null)
             fillImageAndName(holder, wallPost.wallRepost[0])
         else
@@ -48,51 +57,84 @@ class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>,
     }
 
     private fun fillImageAndName(holder: WallPostsViewHolder, wallPost: WallPost) {
-        var profileAvaUrl = ""
-        var profileName = ""
-        var profileSurname = ""
-        var groupName = ""
+
+        showSourceInfo(holder, wallPost)
+        showAttachmentsOrHideImageView(holder, wallPost)
+        showOrHideText(holder, wallPost)
+    }
+
+    private fun showSourceInfo(holder: WallPostsViewHolder, wallPost: WallPost) {
+        var sourceAvaUrl = ""
 
         if (wallPost.id >= 0) {
-            profiles.forEach {
-                if (it.id == wallPost.id) {
-                    profileName = it.firstName
-                    profileSurname = it.lastName
-                    profileAvaUrl = it.photoUrl
-                }
-            }
-            holder.tvName.text = "$profileName $profileSurname"
+            sourceAvaUrl = showProfileNameAndGetProfileAva(holder, wallPost)
         } else {
-            groups.forEach {
-                if (it.groudId == (-1 * wallPost.id)) {
-                    groupName = it.groupName
-                    profileAvaUrl = it.groupPhotoUrl
-                    holder.tvName.text = "$groupName"
-                }
-            }
+            sourceAvaUrl = showGroupNameAndGetGroupAva(holder, wallPost)
         }
 
         Glide.with(context)
-            .load(profileAvaUrl)
+            .load(sourceAvaUrl)
             .apply(RequestOptions.bitmapTransform(RoundedCorners(180)))
             .into(holder.ivAvatar)
+    }
+
+    private fun showProfileNameAndGetProfileAva(holder: WallPostsViewHolder, wallPost: WallPost): String {
+        var profileAvaUrl = ""
+        profiles.forEach {
+            if (it.id == wallPost.id) {
+                profileAvaUrl = it.photoUrl
+                holder.tvName.text = "${it.firstName} ${it.firstName}"
+            }
+        }
+        return profileAvaUrl
+    }
+
+    private fun showGroupNameAndGetGroupAva(holder: WallPostsViewHolder, wallPost: WallPost): String {
+        var groupAvaUrl = ""
+
+        groups.forEach {
+            if (it.groudId == (-1 * wallPost.id)) {
+                groupAvaUrl = it.groupPhotoUrl
+                holder.tvName.text = it.groupName
+            }
+        }
+
+        return groupAvaUrl
+    }
+
+    private fun showAttachmentsOrHideImageView(holder: WallPostsViewHolder, wallPost: WallPost) {
         if (wallPost.attachments != null && wallPost.attachments.size != 0) {
-            run loop@{
-                wallPost.attachments.forEach {
-                    if (it.type == "photo") {
-                        val photoSize: PhotoSize = it.photo.photoSizes[it.photo.photoSizes.size - 1]
-                        var url = photoSize.url
-                        var params: ViewGroup.LayoutParams = holder.ivAttachment.layoutParams
-                        params.height = imageViewFormatter.getImageViewHeightInDp(photoSize.height, photoSize.width)
-                        holder.ivAttachment.requestLayout()
-                        Glide.with(context)
-                            .load(url)
-                            .into(holder.ivAttachment)
-                        return@loop
-                    }
+            showAttachments(holder, wallPost)
+        } else {
+            holder.ivAttachment.visibility = View.GONE
+        }
+    }
+
+    private fun showAttachments(holder: WallPostsViewHolder, wallPost: WallPost) {
+        run loop@{
+            wallPost.attachments.forEach {
+                if (it.type == "photo") {
+                    val photoSize: PhotoSize = it.photo.photoSizes[it.photo.photoSizes.size - 1]
+                    var url = photoSize.url
+
+                    resizeImageView(holder, photoSize)
+
+                    Glide.with(context)
+                        .load(url)
+                        .into(holder.ivAttachment)
+                    return@loop
                 }
             }
         }
+    }
+
+    private fun resizeImageView(holder: WallPostsViewHolder, photoSize: PhotoSize) {
+        val params: ViewGroup.LayoutParams = holder.ivAttachment.layoutParams
+        params.height = imageViewFormatter.getImageViewHeightInDp(photoSize.height, photoSize.width)
+        holder.ivAttachment.requestLayout()
+    }
+
+    private fun showOrHideText(holder: WallPostsViewHolder, wallPost: WallPost) {
         if (wallPost.text != "")
             holder.tvText.text = wallPost.text
         else
