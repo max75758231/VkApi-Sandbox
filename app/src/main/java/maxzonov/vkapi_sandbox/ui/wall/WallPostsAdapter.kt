@@ -88,7 +88,10 @@ class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>,
                 }
             }
         }
-        holder.tvText.text = wallPost.text
+        if (wallPost.text != "")
+            holder.tvText.text = wallPost.text
+        else
+            holder.tvText.visibility = View.GONE
     }
 
     class WallPostsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

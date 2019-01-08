@@ -42,30 +42,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_name" />
 
     <TextView
-        android:id="@+id/tv_wall_item_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/general_spacing_4dp"
-        android:layout_marginEnd="8dp"
-        tools:text="Текст какой-то тестовый для верстки самой лучшей верстки на свете"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_wall_item_date"
-        app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_date" />
-
-    <ImageView
-        android:id="@+id/iv_wall_item_image"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_wall_item_text"
-        app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_text"
-        tools:srcCompat="@drawable/ic_launcher_background"
-        android:scaleType="centerCrop"/>
-
-    <TextView
         android:id="@+id/tv_wall_item_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,8 +51,8 @@
         android:textColor="@color/colorBlack"
         android:drawableLeft="@drawable/ic_general_like_red"
         android:drawablePadding="8dp"
-        app:layout_constraintStart_toStartOf="@+id/iv_wall_item_image"
-        app:layout_constraintTop_toBottomOf="@+id/iv_wall_item_image" />
+        app:layout_constraintStart_toStartOf="@+id/layout_wall_attachment_with_text"
+        app:layout_constraintTop_toBottomOf="@+id/layout_wall_attachment_with_text" />
 
     <TextView
         android:id="@+id/tv_wall_item_comment"
@@ -105,5 +81,38 @@
         android:drawableLeft="@drawable/ic_general_repost_blue"
         android:drawablePadding="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_wall_item_comment"
-        app:layout_constraintEnd_toEndOf="@+id/iv_wall_item_image" />
+        app:layout_constraintEnd_toEndOf="@+id/layout_wall_attachment_with_text" />
+
+    <LinearLayout
+        android:id="@+id/layout_wall_attachment_with_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_wall_item_date"
+        app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_date">
+
+        <TextView
+            android:id="@+id/tv_wall_item_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/general_spacing_4dp"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_wall_item_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_date"
+            tools:text="Текст какой-то тестовый и длинный. Самый длинный. Для верстки." />
+
+        <ImageView
+            android:id="@+id/iv_wall_item_image"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_wall_item_text"
+            app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_text"
+            tools:srcCompat="@drawable/ic_launcher_background" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
