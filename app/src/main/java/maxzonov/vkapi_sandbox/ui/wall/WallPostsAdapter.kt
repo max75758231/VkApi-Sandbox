@@ -50,10 +50,13 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
     }
 
     private fun showSpecificInformation(holder: WallPostsViewHolder, wallPost: WallPost) {
-        if (wallPost.wallRepost != null)
+        if (wallPost.wallRepost != null) {
             fillImageAndName(holder, wallPost.wallRepost[0])
-        else
+        }
+        else {
             fillImageAndName(holder, wallPost)
+            holder.tvReposted.visibility = View.GONE
+        }
     }
 
     private fun fillImageAndName(holder: WallPostsViewHolder, wallPost: WallPost) {
@@ -83,7 +86,7 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
         profiles.forEach {
             if (it.id == wallPost.id) {
                 profileAvaUrl = it.photoUrl
-                holder.tvName.text = "${it.firstName} ${it.firstName}"
+                holder.tvName.text = "${it.firstName} ${it.lastName}"
             }
         }
         return profileAvaUrl
@@ -150,5 +153,6 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
         val tvLike: TextView = itemView.tv_wall_item_like
         val tvComment: TextView = itemView.tv_wall_item_comment
         val tvRepost: TextView = itemView.tv_wall_item_repost
+        val tvReposted: TextView = itemView.tv_wall_reposted
     }
 }
