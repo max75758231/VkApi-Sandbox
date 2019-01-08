@@ -15,6 +15,9 @@ import maxzonov.vkapi_sandbox.data.wall.WallProfile
 import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 import maxzonov.vkapi_sandbox.ui.wall.WallPostsAdapter
 import maxzonov.vkapi_sandbox.utils.DateFormatter
+import android.util.DisplayMetrics
+import maxzonov.vkapi_sandbox.utils.ImageViewFormatter
+
 
 class ProfileActivity : BaseActivity(), ProfileView {
 
@@ -83,7 +86,9 @@ class ProfileActivity : BaseActivity(), ProfileView {
     override fun showProfileWallPosts(wallPosts: ArrayList<WallPost>, profiles: ArrayList<WallProfile>, groups: ArrayList<Group>) {
         tv_profile_wall_count.text = "Записей на стене: ${wallPosts.size}"
 
-        val adapter = WallPostsAdapter(this, wallPosts, profiles, groups)
+        val displayMetrics = resources.displayMetrics
+        val deviceWidthInDp: Int = (displayMetrics.widthPixels / displayMetrics.density).toInt()
+        val adapter = WallPostsAdapter(this, wallPosts, profiles, groups, ImageViewFormatter(this, deviceWidthInDp))
         rv_profile_wall.layoutManager = LinearLayoutManager(this)
         rv_profile_wall.adapter = adapter
     }

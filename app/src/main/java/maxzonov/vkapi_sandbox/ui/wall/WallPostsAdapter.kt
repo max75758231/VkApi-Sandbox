@@ -14,12 +14,14 @@ import kotlinx.android.synthetic.main.item_profile_wall.view.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.data.groups.Group
 import maxzonov.vkapi_sandbox.data.photos.PhotoSize
-import maxzonov.vkapi_sandbox.data.wall.WallPhoto
 import maxzonov.vkapi_sandbox.data.wall.WallPost
 import maxzonov.vkapi_sandbox.data.wall.WallProfile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
+import maxzonov.vkapi_sandbox.utils.ImageViewFormatter
 
-class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>, val profiles: ArrayList<WallProfile>, val groups: ArrayList<Group>) : RecyclerView.Adapter<WallPostsAdapter.WallPostsViewHolder>() {
+class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>, val profiles: ArrayList<WallProfile>,
+                       val groups: ArrayList<Group>, val imageViewFormatter: ImageViewFormatter) :
+    RecyclerView.Adapter<WallPostsAdapter.WallPostsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallPostsViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -80,6 +82,9 @@ class WallPostsAdapter(val context: Context, val wallPosts: ArrayList<WallPost>,
                     if (it.type == "photo") {
                         val photoSize: PhotoSize = it.photo.photoSizes[it.photo.photoSizes.size - 1]
                         var url = photoSize.url
+                        var params: ViewGroup.LayoutParams = holder.ivAttachment.layoutParams
+                        params.height = imageViewFormatter.getImageViewHeightInDp(photoSize.height, photoSize.width)
+                        holder.ivAttachment.requestLayout()
                         Glide.with(context)
                             .load(url)
                             .into(holder.ivAttachment)
