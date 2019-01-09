@@ -2,8 +2,8 @@ package maxzonov.vkapi_sandbox.ui.profile
 
 import maxzonov.vkapi_sandbox.data.groups.Group
 import maxzonov.vkapi_sandbox.data.profile.Profile
-import maxzonov.vkapi_sandbox.data.wall.WallPost
-import maxzonov.vkapi_sandbox.data.wall.WallProfile
+import maxzonov.vkapi_sandbox.data.post.Post
+import maxzonov.vkapi_sandbox.data.post.PostProfile
 
 class ProfilePresenter(private var view: ProfileActivity?, private val interactor: ProfileInteractor) : ProfileInteractor.OnLoadingResultListener {
 
@@ -21,7 +21,7 @@ class ProfilePresenter(private var view: ProfileActivity?, private val interacto
         view?.showProfileDataInfo(profile)
     }
 
-    override fun onResultSuccess(wallPosts: ArrayList<WallPost>, profiles: ArrayList<WallProfile>, groups: ArrayList<Group>) {
+    override fun onResultSuccess(wallPosts: ArrayList<Post>, profiles: ArrayList<PostProfile>, groups: ArrayList<Group>) {
         view?.showProfileWallPosts(wallPosts, profiles, groups)
     }
 

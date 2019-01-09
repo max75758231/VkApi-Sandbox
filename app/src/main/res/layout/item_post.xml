@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_wall_reposted"
+        android:id="@+id/tv_post_reposted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="72dp"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_wall_avatar"
+            android:id="@+id/iv_post_avatar"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
@@ -34,7 +34,7 @@
             app:srcCompat="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/tv_wall_item_name"
+            android:id="@+id/tv_post_item_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -44,22 +44,22 @@
             android:textStyle="bold"
             android:textColor="@color/colorProfileName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_wall_avatar"
+            app:layout_constraintStart_toEndOf="@+id/iv_post_avatar"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_wall_item_date"
+            android:id="@+id/tv_post_item_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             tools:text="18 декабря 23:23"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_wall_item_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_name" />
+            app:layout_constraintStart_toStartOf="@+id/tv_post_item_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_post_item_name" />
 
         <TextView
-            android:id="@+id/tv_wall_item_like"
+            android:id="@+id/tv_post_item_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -68,11 +68,11 @@
             android:textColor="@color/colorBlack"
             android:drawableLeft="@drawable/ic_general_like_red"
             android:drawablePadding="8dp"
-            app:layout_constraintStart_toStartOf="@+id/layout_wall_attachment_with_text"
-            app:layout_constraintTop_toBottomOf="@+id/layout_wall_attachment_with_text" />
+            app:layout_constraintStart_toStartOf="@+id/layout_post_attachment_with_text"
+            app:layout_constraintTop_toBottomOf="@+id/layout_post_attachment_with_text" />
 
         <TextView
-            android:id="@+id/tv_wall_item_comment"
+            android:id="@+id/tv_post_item_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -82,12 +82,12 @@
             android:textColor="@color/colorBlack"
             android:drawableLeft="@drawable/ic_general_comment_blue"
             android:drawablePadding="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_wall_item_like"
-            app:layout_constraintEnd_toStartOf="@+id/tv_wall_item_repost"
-            app:layout_constraintStart_toEndOf="@+id/tv_wall_item_like" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_post_item_like"
+            app:layout_constraintEnd_toStartOf="@+id/tv_post_item_repost"
+            app:layout_constraintStart_toEndOf="@+id/tv_post_item_like" />
 
         <TextView
-            android:id="@+id/tv_wall_item_repost"
+            android:id="@+id/tv_post_item_repost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -97,39 +97,39 @@
             android:textColor="@color/colorBlack"
             android:drawableLeft="@drawable/ic_general_repost_blue"
             android:drawablePadding="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_wall_item_comment"
-            app:layout_constraintEnd_toEndOf="@+id/layout_wall_attachment_with_text" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_post_item_comment"
+            app:layout_constraintEnd_toEndOf="@+id/layout_post_attachment_with_text" />
 
         <LinearLayout
-            android:id="@+id/layout_wall_attachment_with_text"
+            android:id="@+id/layout_post_attachment_with_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_wall_item_date"
-            app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_date">
+            app:layout_constraintStart_toStartOf="@+id/tv_post_item_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv_post_item_date">
 
             <TextView
-                android:id="@+id/tv_wall_item_text"
+                android:id="@+id/tv_post_item_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/general_spacing_4dp"
                 android:textColor="@color/colorBlack"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_wall_item_date"
-                app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_date"
+                app:layout_constraintStart_toStartOf="@+id/tv_post_item_date"
+                app:layout_constraintTop_toBottomOf="@+id/tv_post_item_date"
                 tools:text="Текст какой-то тестовый и длинный. Самый длинный. Для верстки." />
 
             <ImageView
-                android:id="@+id/iv_wall_item_image"
+                android:id="@+id/iv_post_item_image"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_wall_item_text"
-                app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_text"
+                app:layout_constraintStart_toStartOf="@+id/tv_post_item_text"
+                app:layout_constraintTop_toBottomOf="@+id/tv_post_item_text"
                 tools:srcCompat="@drawable/ic_launcher_background" />
         </LinearLayout>
 
@@ -142,7 +142,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_comment" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_post_item_comment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

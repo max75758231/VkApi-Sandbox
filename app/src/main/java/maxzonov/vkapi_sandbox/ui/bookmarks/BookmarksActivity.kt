@@ -6,8 +6,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_bookmarks.*
 import maxzonov.vkapi_sandbox.R
-import maxzonov.vkapi_sandbox.data.bookmarks.ResponseBookmarks
+import maxzonov.vkapi_sandbox.data.post.ResponsePosts
 import maxzonov.vkapi_sandbox.ui.base.BaseActivity
+import maxzonov.vkapi_sandbox.ui.posts.PostsAdapter
+import maxzonov.vkapi_sandbox.utils.ImageViewFormatter
 
 class BookmarksActivity : BaseActivity(), BookmarksView {
 
@@ -29,8 +31,10 @@ class BookmarksActivity : BaseActivity(), BookmarksView {
         pb_bookmarks.visibility = View.GONE
     }
 
-    override fun showDataFromServer(response: ResponseBookmarks) {
-        val adapter = BookmarksAdapter(this, response.response.bookmarks, response.response.profiles)
+    override fun showDataFromServer(response: ResponsePosts) {
+        val displayMetrics = resources.displayMetrics
+        val deviceWidthInDp: Int = (displayMetrics.widthPixels / displayMetrics.density).toInt()
+        val adapter = PostsAdapter(this, response.posts.responseItems, response.posts.profiles, response.posts.groups, ImageViewFormatter(this, deviceWidthInDp))
         rv_bookmarks.layoutManager = LinearLayoutManager(this)
         rv_bookmarks.adapter = adapter
         hideProgress()

@@ -3,7 +3,7 @@ package maxzonov.vkapi_sandbox.ui.bookmarks
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import maxzonov.vkapi_sandbox.data.bookmarks.ResponseBookmarks
+import maxzonov.vkapi_sandbox.data.post.ResponsePosts
 import maxzonov.vkapi_sandbox.retrofit.ApiServiceBookmarks
 import maxzonov.vkapi_sandbox.retrofit.RetrofitClient
 import maxzonov.vkapi_sandbox.utils.Constants
@@ -12,14 +12,13 @@ import maxzonov.vkapi_sandbox.utils.PrefsHelper
 class BookmarksInteractor {
 
     interface OnLoadingResultListener {
-        fun onResultSuccess(response: ResponseBookmarks)
+        fun onResultSuccess(response: ResponsePosts)
         fun onResultFail(errorStr: String)
     }
 
     private lateinit var onLoadingResultListener: OnLoadingResultListener
 
     fun getBookmarksDataFromNetwork(onLoadingResultListener: OnLoadingResultListener) {
-        val userId = PrefsHelper.read(PrefsHelper.ID_USER, 0).toString()
         val token = PrefsHelper.read(PrefsHelper.TOKEN, "")
 
         val compositeDisposable = CompositeDisposable()
@@ -39,7 +38,7 @@ class BookmarksInteractor {
         )
     }
 
-    private fun handleResponseSuccess(response: ResponseBookmarks) {
+    private fun handleResponseSuccess(response: ResponsePosts) {
         onLoadingResultListener.onResultSuccess(response)
     }
 

@@ -1,8 +1,7 @@
-package maxzonov.vkapi_sandbox.ui.wall
+package maxzonov.vkapi_sandbox.ui.posts
 
 import android.content.Context
 import android.os.Build
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,22 +12,22 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.volokh.danylo.hashtaghelper.HashTagHelper
-import kotlinx.android.synthetic.main.item_profile_wall.view.*
+import kotlinx.android.synthetic.main.item_post.view.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.data.groups.Group
 import maxzonov.vkapi_sandbox.data.photos.PhotoSize
-import maxzonov.vkapi_sandbox.data.wall.WallPost
-import maxzonov.vkapi_sandbox.data.wall.WallProfile
+import maxzonov.vkapi_sandbox.data.post.Post
+import maxzonov.vkapi_sandbox.data.post.PostProfile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 import maxzonov.vkapi_sandbox.utils.ImageViewFormatter
 
-class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<WallPost>, val profiles: ArrayList<WallProfile>,
-                       val groups: ArrayList<Group>, private val imageViewFormatter: ImageViewFormatter) :
-    RecyclerView.Adapter<WallPostsAdapter.WallPostsViewHolder>() {
+class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>, val profiles: ArrayList<PostProfile>,
+                   val groups: ArrayList<Group>, private val imageViewFormatter: ImageViewFormatter) :
+    RecyclerView.Adapter<PostsAdapter.WallPostsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallPostsViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_profile_wall, parent, false)
+            .inflate(R.layout.item_post, parent, false)
         return WallPostsViewHolder(itemView)
     }
 
@@ -37,13 +36,13 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
     }
 
     override fun onBindViewHolder(holder: WallPostsViewHolder, position: Int) {
-        val wallPost: WallPost = wallPosts[position]
+        val wallPost: Post = wallPosts[position]
 
         showGeneralInfo(holder, wallPost)
         showSpecificInformation(holder, wallPost)
     }
 
-    private fun showGeneralInfo(holder: WallPostsViewHolder, wallPost: WallPost) {
+    private fun showGeneralInfo(holder: WallPostsViewHolder, wallPost: Post) {
         with(holder) {
             tvDate.text = DateFormatter.convertDateToDayString(wallPost.date)
             tvLike.text = wallPost.likes.likesNumber.toString()
@@ -52,7 +51,7 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
         }
     }
 
-    private fun showSpecificInformation(holder: WallPostsViewHolder, wallPost: WallPost) {
+    private fun showSpecificInformation(holder: WallPostsViewHolder, wallPost: Post) {
         if (wallPost.wallRepost != null) {
             fillImageAndName(holder, wallPost.wallRepost[0])
         }
@@ -62,14 +61,14 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
         }
     }
 
-    private fun fillImageAndName(holder: WallPostsViewHolder, wallPost: WallPost) {
+    private fun fillImageAndName(holder: WallPostsViewHolder, wallPost: Post) {
 
         showSourceInfo(holder, wallPost)
         showAttachmentsOrHideImageView(holder, wallPost)
         showOrHideText(holder, wallPost)
     }
 
-    private fun showSourceInfo(holder: WallPostsViewHolder, wallPost: WallPost) {
+    private fun showSourceInfo(holder: WallPostsViewHolder, wallPost: Post) {
         var sourceAvaUrl = ""
 
         if (wallPost.id >= 0) {
@@ -84,7 +83,7 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
             .into(holder.ivAvatar)
     }
 
-    private fun showProfileNameAndGetProfileAva(holder: WallPostsViewHolder, wallPost: WallPost): String {
+    private fun showProfileNameAndGetProfileAva(holder: WallPostsViewHolder, wallPost: Post): String {
         var profileAvaUrl = ""
         profiles.forEach {
             if (it.id == wallPost.id) {
@@ -95,7 +94,7 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
         return profileAvaUrl
     }
 
-    private fun showGroupNameAndGetGroupAva(holder: WallPostsViewHolder, wallPost: WallPost): String {
+    private fun showGroupNameAndGetGroupAva(holder: WallPostsViewHolder, wallPost: Post): String {
         var groupAvaUrl = ""
 
         groups.forEach {
@@ -108,7 +107,7 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
         return groupAvaUrl
     }
 
-    private fun showAttachmentsOrHideImageView(holder: WallPostsViewHolder, wallPost: WallPost) {
+    private fun showAttachmentsOrHideImageView(holder: WallPostsViewHolder, wallPost: Post) {
         if (wallPost.attachments != null && wallPost.attachments.size != 0) {
             showAttachments(holder, wallPost)
         } else {
@@ -116,7 +115,7 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
         }
     }
 
-    private fun showAttachments(holder: WallPostsViewHolder, wallPost: WallPost) {
+    private fun showAttachments(holder: WallPostsViewHolder, wallPost: Post) {
         run loop@{
             wallPost.attachments.forEach {
                 if (it.type == "photo") {
@@ -141,7 +140,7 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
         holder.ivAttachment.requestLayout()
     }
 
-    private fun showOrHideText(holder: WallPostsViewHolder, wallPost: WallPost) {
+    private fun showOrHideText(holder: WallPostsViewHolder, wallPost: Post) {
         if (wallPost.text != "") {
             holder.tvText.text = wallPost.text
             colorHashtagsInText(holder.tvText)
@@ -160,14 +159,14 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
     }
 
     class WallPostsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ivAvatar: ImageView = itemView.iv_wall_avatar
-        val ivAttachment: ImageView = itemView.iv_wall_item_image
-        val tvName: TextView = itemView.tv_wall_item_name
-        val tvDate: TextView = itemView.tv_wall_item_date
-        val tvText: TextView = itemView.tv_wall_item_text
-        val tvLike: TextView = itemView.tv_wall_item_like
-        val tvComment: TextView = itemView.tv_wall_item_comment
-        val tvRepost: TextView = itemView.tv_wall_item_repost
-        val tvReposted: TextView = itemView.tv_wall_reposted
+        val ivAvatar: ImageView = itemView.iv_post_avatar
+        val ivAttachment: ImageView = itemView.iv_post_item_image
+        val tvName: TextView = itemView.tv_post_item_name
+        val tvDate: TextView = itemView.tv_post_item_date
+        val tvText: TextView = itemView.tv_post_item_text
+        val tvLike: TextView = itemView.tv_post_item_like
+        val tvComment: TextView = itemView.tv_post_item_comment
+        val tvRepost: TextView = itemView.tv_post_item_repost
+        val tvReposted: TextView = itemView.tv_post_reposted
     }
 }

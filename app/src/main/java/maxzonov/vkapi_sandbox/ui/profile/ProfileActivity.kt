@@ -10,12 +10,11 @@ import kotlinx.android.synthetic.main.activity_profile.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.data.groups.Group
 import maxzonov.vkapi_sandbox.data.profile.Profile
-import maxzonov.vkapi_sandbox.data.wall.WallPost
-import maxzonov.vkapi_sandbox.data.wall.WallProfile
+import maxzonov.vkapi_sandbox.data.post.Post
+import maxzonov.vkapi_sandbox.data.post.PostProfile
 import maxzonov.vkapi_sandbox.ui.base.BaseActivity
-import maxzonov.vkapi_sandbox.ui.wall.WallPostsAdapter
+import maxzonov.vkapi_sandbox.ui.posts.PostsAdapter
 import maxzonov.vkapi_sandbox.utils.DateFormatter
-import android.util.DisplayMetrics
 import maxzonov.vkapi_sandbox.utils.ImageViewFormatter
 
 
@@ -83,12 +82,12 @@ class ProfileActivity : BaseActivity(), ProfileView {
         hideProgress()
     }
 
-    override fun showProfileWallPosts(wallPosts: ArrayList<WallPost>, profiles: ArrayList<WallProfile>, groups: ArrayList<Group>) {
+    override fun showProfileWallPosts(wallPosts: ArrayList<Post>, profiles: ArrayList<PostProfile>, groups: ArrayList<Group>) {
         tv_profile_wall_count.text = "Записей на стене: ${wallPosts.size}"
 
         val displayMetrics = resources.displayMetrics
         val deviceWidthInDp: Int = (displayMetrics.widthPixels / displayMetrics.density).toInt()
-        val adapter = WallPostsAdapter(this, wallPosts, profiles, groups, ImageViewFormatter(this, deviceWidthInDp))
+        val adapter = PostsAdapter(this, wallPosts, profiles, groups, ImageViewFormatter(this, deviceWidthInDp))
         rv_profile_wall.layoutManager = LinearLayoutManager(this)
         rv_profile_wall.adapter = adapter
     }

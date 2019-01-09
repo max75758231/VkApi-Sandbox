@@ -1,8 +1,8 @@
-package maxzonov.vkapi_sandbox.data.wall
+package maxzonov.vkapi_sandbox.data.post
 
 import com.google.gson.annotations.SerializedName
 
-data class WallProfile(
+data class PostProfile(
     @SerializedName("id") val id: Long,
     @SerializedName("first_name") val firstName: String,
     @SerializedName("last_name") val lastName: String,

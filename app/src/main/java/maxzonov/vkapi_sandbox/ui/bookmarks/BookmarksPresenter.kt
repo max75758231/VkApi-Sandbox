@@ -1,6 +1,6 @@
 package maxzonov.vkapi_sandbox.ui.bookmarks
 
-import maxzonov.vkapi_sandbox.data.bookmarks.ResponseBookmarks
+import maxzonov.vkapi_sandbox.data.post.ResponsePosts
 
 class BookmarksPresenter(private var view: BookmarksActivity?, private val interactor: BookmarksInteractor) :
     BookmarksInteractor.OnLoadingResultListener {
@@ -14,7 +14,7 @@ class BookmarksPresenter(private var view: BookmarksActivity?, private val inter
         view = null
     }
 
-    override fun onResultSuccess(response: ResponseBookmarks) {
+    override fun onResultSuccess(response: ResponsePosts) {
         view?.showDataFromServer(response)
     }
 
