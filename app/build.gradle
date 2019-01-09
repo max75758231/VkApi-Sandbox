@@ -71,6 +71,8 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
     implementation "com.github.florent37:shapeofview:$shapeOfViewVersion"
+
+    implementation 'com.github.danylovolokh:hashtag-helper:1.1.0'
 }
 
 repositories {

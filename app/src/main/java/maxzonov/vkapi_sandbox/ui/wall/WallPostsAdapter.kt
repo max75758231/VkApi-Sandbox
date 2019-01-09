@@ -1,6 +1,8 @@
 package maxzonov.vkapi_sandbox.ui.wall
 
 import android.content.Context
+import android.os.Build
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.volokh.danylo.hashtaghelper.HashTagHelper
 import kotlinx.android.synthetic.main.item_profile_wall.view.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.data.groups.Group
@@ -124,6 +127,7 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
 
                     Glide.with(context)
                         .load(url)
+                        .apply(RequestOptions.bitmapTransform(RoundedCorners(12)))
                         .into(holder.ivAttachment)
                     return@loop
                 }
@@ -138,10 +142,21 @@ class WallPostsAdapter(val context: Context, private val wallPosts: ArrayList<Wa
     }
 
     private fun showOrHideText(holder: WallPostsViewHolder, wallPost: WallPost) {
-        if (wallPost.text != "")
+        if (wallPost.text != "") {
             holder.tvText.text = wallPost.text
-        else
+            colorHashtagsInText(holder.tvText)
+
+        } else {
             holder.tvText.visibility = View.GONE
+        }
+    }
+
+    private fun colorHashtagsInText(textView: TextView) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            HashTagHelper.Creator.create(context.getColor(R.color.colorPrimary), null).handle(textView)
+        } else {
+            HashTagHelper.Creator.create(context.resources.getColor(R.color.colorPrimary), null).handle(textView)
+        }
     }
 
     class WallPostsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

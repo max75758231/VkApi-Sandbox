@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             tools:text="18 декабря 23:23"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_wall_item_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_name" />
@@ -99,17 +100,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_wall_item_comment"
             app:layout_constraintEnd_toEndOf="@+id/layout_wall_attachment_with_text" />
 
-        <View
-            android:id="@+id/view4"
-            android:layout_width="0dp"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="@dimen/general_spacing_16dp"
-            android:background="@color/colorDividerGrey"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_comment" />
-
         <LinearLayout
             android:id="@+id/layout_wall_attachment_with_text"
             android:layout_width="0dp"
@@ -142,6 +132,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_text"
                 tools:srcCompat="@drawable/ic_launcher_background" />
         </LinearLayout>
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/general_spacing_16dp"
+            android:background="@color/colorDividerGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_wall_item_comment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
