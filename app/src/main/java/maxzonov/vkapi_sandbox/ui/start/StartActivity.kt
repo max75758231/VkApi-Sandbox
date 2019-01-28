@@ -47,7 +47,6 @@ class StartActivity : AppCompatActivity(), StartView {
             isHorizontalScrollBarEnabled = false
             clearCache(true)
 
-//            visibility = View.VISIBLE
             webViewClient = wvClient
             loadUrl(authUrl)
         }

@@ -22,6 +22,9 @@
                  android:layout_width="match_parent"
                  android:layout_height="@dimen/profile_iv_size"
                  android:elevation="4dp"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent"
                  app:shape_diagonal_angle="10"
                  app:shape_diagonal_direction="left"
                  app:shape_diagonal_position="bottom">

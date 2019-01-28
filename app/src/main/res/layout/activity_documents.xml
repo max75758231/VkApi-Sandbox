@@ -10,7 +10,10 @@
         android:id="@+id/hsv_docs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
@@ -26,56 +29,56 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/general_spacing_8dp"
-                app:chipBackgroundColor="#0D232F34"
-                android:text="@string/docs_all" />
+                android:text="@string/docs_all"
+                app:chipBackgroundColor="#0D232F34" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_docs_anims"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:chipBackgroundColor="#0D232F34"
-                android:text="@string/docs_anims" />
+                android:text="@string/docs_anims"
+                app:chipBackgroundColor="#0D232F34" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_docs_archives"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:chipBackgroundColor="#0D232F34"
-                android:text="@string/docs_archives" />
+                android:text="@string/docs_archives"
+                app:chipBackgroundColor="#0D232F34" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_docs_audio"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:chipBackgroundColor="#0D232F34"
-                android:text="@string/docs_audio" />
+                android:text="@string/docs_audio"
+                app:chipBackgroundColor="#0D232F34" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_docs_video"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:chipBackgroundColor="#0D232F34"
-                android:text="@string/docs_video" />
+                android:text="@string/docs_video"
+                app:chipBackgroundColor="#0D232F34" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_docs_images"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:chipBackgroundColor="#0D232F34"
-                android:text="@string/docs_pics" />
+                android:text="@string/docs_pics"
+                app:chipBackgroundColor="#0D232F34" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_docs_text"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:chipBackgroundColor="#0D232F34"
-                android:text="@string/docs_text" />
+                android:text="@string/docs_text"
+                app:chipBackgroundColor="#0D232F34" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_docs_others"
@@ -83,8 +86,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/general_spacing_8dp"
-                app:chipBackgroundColor="#0D232F34"
-                android:text="@string/docs_others" />
+                android:text="@string/docs_others"
+                app:chipBackgroundColor="#0D232F34" />
 
         </com.google.android.material.chip.ChipGroup>
 
