@@ -14,6 +14,7 @@
     <string name="profile_expand_info">Развернуть профиль</string>
 
     <!-- Menu strings -->
+    <string name="menu_my_profile">Мой профиль</string>
     <string name="menu_friends">Друзья</string>
     <string name="menu_bookmarks">Закладки</string>
     <string name="menu_documents">Документы</string>

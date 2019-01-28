@@ -12,6 +12,7 @@ import maxzonov.vkapi_sandbox.ui.documents.DocumentsActivity
 import maxzonov.vkapi_sandbox.ui.friends.FriendsActivity
 import maxzonov.vkapi_sandbox.ui.groups.GroupsActivity
 import maxzonov.vkapi_sandbox.ui.photos.PhotosActivity
+import maxzonov.vkapi_sandbox.ui.profile.ProfileActivity
 import maxzonov.vkapi_sandbox.ui.settings.SettingsActivity
 
 class MenuActivity : AppCompatActivity() {
@@ -19,6 +20,11 @@ class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
+
+        layout_menu_my_profile.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+            overridePendingTransition(R.anim.move_right_activity_out, R.anim.move_left_activity_in)
+        }
 
         layout_menu_friends.setOnClickListener {
             startActivity(Intent(this, FriendsActivity::class.java))
