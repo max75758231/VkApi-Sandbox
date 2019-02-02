@@ -30,4 +30,10 @@
     <string name="docs_pics">Изображения</string>
     <string name="docs_text">Текстовые</string>
     <string name="docs_others">Прочие</string>
+
+    <!-- Post strings -->
+    <string name="post_repost">Репост</string>
+
+    <!-- Settings strings -->
+    <string name="settings_exit">Выйти</string>
 </resources>

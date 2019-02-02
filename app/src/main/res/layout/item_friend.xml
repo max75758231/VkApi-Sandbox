@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/iv_item_friend_avatar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/general_avatar_size_48dp"
+        android:layout_height="@dimen/general_avatar_size_48dp"
         android:scaleType="centerCrop"/>
 
     <TextView

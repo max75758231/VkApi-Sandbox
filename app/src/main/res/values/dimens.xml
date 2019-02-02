@@ -9,6 +9,7 @@
     <dimen name="general_spacing_16dp">16dp</dimen>
     <dimen name="general_spacing_24dp">24dp</dimen>
     <dimen name="general_spacing_32dp">32dp</dimen>
+    <dimen name="general_avatar_size_48dp">48dp</dimen>
 
     <!-- Profile dimens -->
 

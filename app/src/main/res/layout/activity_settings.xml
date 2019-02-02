@@ -27,11 +27,11 @@
         <TextView
             android:id="@+id/tv_settings_exit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_marginTop="@dimen/general_spacing_12dp"
             android:layout_marginBottom="@dimen/general_spacing_12dp"
-            android:text="Выйти"
+            android:text="@string/settings_exit"
             android:textSize="16sp"
             android:textColor="@color/colorBlack"/>
 
