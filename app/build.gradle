@@ -23,6 +23,8 @@ android {
 
 ext {
     // AndroidX Pack
+    testRunnerVersion = "1.1.1"
+    testEspressoVersion = "3.1.1"
     appCompatVersion = "1.0.2"
     vectorDrawableVersion = "1.0.1"
     coreKtxVersion = "1.0.1"
@@ -44,8 +46,8 @@ ext {
 
 dependencies {
     testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$testEspressoVersion"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
