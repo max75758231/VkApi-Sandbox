@@ -4,6 +4,9 @@
     <!-- General strings -->
     <string name="general_back_button">Для выхода из приложения нажмите \"назад\" еще раз</string>
 
+    <!-- Friends strings -->
+    <string name="friends_count">Всего: %1$s</string>
+
     <!-- Profile strings -->
     <string name="profile_last_seen_man">Был %1$s в %2$s</string>
     <string name="profile_last_seen_woman">Была %1$s в %2$s</string>
@@ -12,6 +15,7 @@
     <string name="profile_online">Онлайн</string>
     <string name="profile_error">Не удалось загрузить профиль. Проверьте интернет-соединение.</string>
     <string name="profile_expand_info">Развернуть профиль</string>
+    <string name="profile_wall_count">Записей на стене: %1$s</string>
 
     <!-- Menu strings -->
     <string name="menu_my_profile">Мой профиль</string>

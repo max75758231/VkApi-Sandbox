@@ -35,7 +35,7 @@ class FriendsActivity : BaseActivity(), FriendsView {
     }
 
     override fun showDataFromServer(friendsResponse: ResponseFriends) {
-        tv_friends_count.text = "Всего: ${friendsResponse.response.count}"
+        tv_friends_count.text = getString(R.string.friends_count, friendsResponse.response.count.toString())
 
         val adapter = FriendsAdapter(this, friendsResponse.response.items)
         rv_friends.layoutManager = LinearLayoutManager(this)
