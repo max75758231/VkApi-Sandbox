@@ -42,7 +42,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="20,48 КБ  |  21.11.2018 6:55"
+        tools:text="20,48 КБ  |  21.11.2018 6:55"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

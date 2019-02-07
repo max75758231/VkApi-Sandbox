@@ -83,7 +83,7 @@ class ProfileActivity : BaseActivity(), ProfileView {
     }
 
     override fun showProfileWallPosts(wallPosts: ArrayList<Post>, profiles: ArrayList<PostProfile>, groups: ArrayList<Group>) {
-        tv_profile_wall_count.text = "Записей на стене: ${wallPosts.size}"
+        tv_profile_wall_count.text = getString(R.string.profile_wall_count, wallPosts.size.toString())
 
         val displayMetrics = resources.displayMetrics
         val deviceWidthInDp: Int = (displayMetrics.widthPixels / displayMetrics.density).toInt()
