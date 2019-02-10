@@ -136,7 +136,7 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
 
     private fun resizeImageView(holder: WallPostsViewHolder, photoSize: PhotoSize) {
         val params: ViewGroup.LayoutParams = holder.ivAttachment.layoutParams
-        params.height = imageViewFormatter.getImageViewHeightInDp(photoSize.height, photoSize.width)
+        params.height = imageViewFormatter.getImageViewHeightInPx(photoSize.height, photoSize.width)
         holder.ivAttachment.requestLayout()
     }
 

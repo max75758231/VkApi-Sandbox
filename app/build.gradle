@@ -23,8 +23,6 @@ android {
 
 ext {
     // AndroidX Pack
-    testRunnerVersion = "1.1.1"
-    testEspressoVersion = "3.1.1"
     appCompatVersion = "1.0.2"
     vectorDrawableVersion = "1.0.1"
     coreKtxVersion = "1.0.1"
@@ -45,8 +43,9 @@ ext {
     // Testing
     junitVersion = "4.12"
     mockitoCoreVersion = "2.15.0"
-    kotlinTestVersion = "2.0.7"
     powermockVersion = "2.0.0-beta.5"
+    testRunnerVersion = "1.1.1"
+    testEspressoVersion = "3.1.1"
 }
 
 dependencies {
@@ -55,7 +54,6 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$testRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$testEspressoVersion"
     testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
-    testImplementation "io.kotlintest:kotlintest:$kotlinTestVersion"
 
     testImplementation "org.powermock:powermock-module-junit4-rule:$powermockVersion"
     testImplementation "org.powermock:powermock-core:$powermockVersion"
