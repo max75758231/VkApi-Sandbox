@@ -31,9 +31,8 @@ ext {
     constraintVersion = "2.0.0-alpha3"
     materialVersion = "1.1.0-alpha03"
     cardViewVersion = "1.0.0"
-    recyclerVersion = "1.0.0"
+    recyclerVersion = "1.1.0-alpha02"
 
-    junitVersion = "4.12"
     retrofitVersion = "2.3.0"
     gsonVersion = "2.8.0"
     retrofitAdapterVersion = "1.0.0"
@@ -42,12 +41,26 @@ ext {
     rxAndroidVersion = "2.0.1"
     glideVersion = "4.7.1"
     shapeOfViewVersion = "1.3.2"
+
+    // Testing
+    junitVersion = "4.12"
+    mockitoCoreVersion = "2.15.0"
+    kotlinTestVersion = "2.0.7"
+    powermockVersion = "2.0.0-beta.5"
 }
 
 dependencies {
     testImplementation "junit:junit:$junitVersion"
+    testImplementation "com.android.support.test:runner:1.0.2"
     androidTestImplementation "androidx.test:runner:$testRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$testEspressoVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
+    testImplementation "io.kotlintest:kotlintest:$kotlinTestVersion"
+
+    testImplementation "org.powermock:powermock-module-junit4-rule:$powermockVersion"
+    testImplementation "org.powermock:powermock-core:$powermockVersion"
+    testImplementation "org.powermock:powermock-module-junit4:$powermockVersion"
+    testImplementation "org.powermock:powermock-api-mockito2:$powermockVersion"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
