@@ -1,11 +1,16 @@
 package maxzonov.vkapi_sandbox.ui.profile
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.activity_profile.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.data.groups.Group
@@ -16,7 +21,6 @@ import maxzonov.vkapi_sandbox.ui.base.BaseActivity
 import maxzonov.vkapi_sandbox.ui.posts.PostsAdapter
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 import maxzonov.vkapi_sandbox.utils.ImageViewFormatter
-
 
 class ProfileActivity : BaseActivity(), ProfileView {
 
@@ -77,9 +81,18 @@ class ProfileActivity : BaseActivity(), ProfileView {
 
         Glide.with(this)
                 .load(profile.photoCropped)
-                .into(iv_profile_ava)
+                .listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
 
-        hideProgress()
+                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean
+                    ): Boolean {
+                        hideProgress()
+                        return false
+                    }
+                })
+                .into(iv_profile_ava)
     }
 
     override fun showProfileWallPosts(wallPosts: ArrayList<Post>, profiles: ArrayList<PostProfile>, groups: ArrayList<Group>) {
