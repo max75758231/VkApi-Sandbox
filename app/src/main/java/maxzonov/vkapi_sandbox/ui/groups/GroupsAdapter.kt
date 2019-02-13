@@ -1,6 +1,7 @@
 package maxzonov.vkapi_sandbox.ui.groups
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +15,12 @@ import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_group.view.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.data.groups.Group
+import java.lang.Exception
 
-class GroupsAdapter (val context: Context, val groups: ArrayList<Group>) : RecyclerView.Adapter<GroupsAdapter.GroupsViewHolder>() {
+class GroupsAdapter (val context: Context, var groups: ArrayList<Group>) : RecyclerView.Adapter<GroupsAdapter.GroupsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupsViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_group, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_group, parent, false)
         return GroupsViewHolder(itemView)
     }
 
@@ -39,6 +40,15 @@ class GroupsAdapter (val context: Context, val groups: ArrayList<Group>) : Recyc
             .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.RESOURCE)) // Cache only final image
             .apply(RequestOptions.bitmapTransform(RoundedCorners(8)))
             .into(holder.ivPhoto)
+    }
+
+    fun updateGroups(groups: ArrayList<Group>) {
+        this.groups = groups
+        try {
+            notifyDataSetChanged()
+        } catch (e: Exception) {
+            Log.d("myLog", e.message)
+        }
     }
 
     class GroupsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
