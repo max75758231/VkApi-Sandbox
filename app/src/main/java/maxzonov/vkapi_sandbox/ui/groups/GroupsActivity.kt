@@ -6,27 +6,24 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_groups.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.data.groups.Group
 import maxzonov.vkapi_sandbox.ui.menu.MenuActivity
 import maxzonov.vkapi_sandbox.ui.settings.SettingsActivity
-import android.util.Log
-import android.widget.ArrayAdapter
 import android.widget.SearchView
-import io.reactivex.Observable
-import io.reactivex.ObservableOnSubscribe
 import maxzonov.vkapi_sandbox.ui.base.BaseActivity
-import java.util.concurrent.TimeUnit
 
-class GroupsActivity : BaseActivity(), GroupsView {
+class GroupsActivity : BaseActivity(), GroupsView, SearchViewClearedListener {
 
     private lateinit var groupsPresenter: GroupsPresenter
-
     private lateinit var groupsAdapter: GroupsAdapter
     private lateinit var groups: ArrayList<Group>
+
+    private lateinit var searchView: SearchView
+
+    private lateinit var searchViewClearedListener: SearchViewClearedListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,36 +42,23 @@ class GroupsActivity : BaseActivity(), GroupsView {
         menuInflater.inflate(R.menu.menu_activity_groups, menu)
 
         val menuSearchItem = menu!!.findItem(R.id.general_action_search)
-        val searchView = menuSearchItem.actionView as SearchView
+        searchView = menuSearchItem.actionView as SearchView
         searchView.maxWidth = 480
+        searchViewClearedListener = this
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                Toast.makeText(this@GroupsActivity, query, Toast.LENGTH_SHORT).show()
-                return false
+                updateRecyclerView("")
+                return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                Observable.create(ObservableOnSubscribe<String> { subscriber ->
-                    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                        override fun onQueryTextChange(newText: String?): Boolean {
-                            subscriber.onNext(newText!!)
-                            return false
-                        }
-
-                        override fun onQueryTextSubmit(query: String?): Boolean {
-                            subscriber.onNext(query!!)
-                            return false
-                        }
-                    })
-                })
-                    .map { text -> text.toLowerCase().trim() }
-                    .debounce(250, TimeUnit.MILLISECONDS)
-                    .distinct()
-                    .subscribe { text ->
-//                        Log.d("myLog", "subscriber: $text")
-                        updateRecyclerView(text)
-                    }
-                return false
+                if (newText == "") {
+                    this.onQueryTextSubmit("")
+                    searchViewClearedListener.onSearchViewCleared()
+                } else {
+                    updateRecyclerView(newText)
+                }
+                return true
             }
         })
         return true
@@ -99,17 +83,26 @@ class GroupsActivity : BaseActivity(), GroupsView {
         }
     }
 
-    fun updateRecyclerView(filter: String) {
-        var newGroups: ArrayList<Group> = ArrayList()
-        for (group in groups) {
-            if (group.groupName.toLowerCase().contains(filter)) {
-                newGroups.add(group)
+    override fun onSearchViewCleared() {
+        searchView.isIconified = true
+    }
+
+    fun updateRecyclerView(filterText: String) {
+        if (filterText != "") {
+            val newGroups: ArrayList<Group> = ArrayList()
+            for (group in groups) {
+                if (group.groupName.toLowerCase().contains(filterText)) {
+                    newGroups.add(group)
+                }
+            }
+            runOnUiThread {
+                groupsAdapter.updateGroups(newGroups)
+            }
+        } else {
+            runOnUiThread {
+                groupsAdapter.updateGroups(groups)
             }
         }
-        runOnUiThread {
-            groupsAdapter.updateGroups(newGroups)
-        }
-
     }
 
     override fun showData(groups: ArrayList<Group>) {
