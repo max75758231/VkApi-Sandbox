@@ -41,6 +41,7 @@ class ProfileActivity : BaseActivity(), ProfileView {
         profilePresenter = ProfilePresenter(this, ProfileInteractor())
 
         profilePresenter.getProfileData()
+        hideWallData()
     }
 
     override fun onResume() {
@@ -103,6 +104,8 @@ class ProfileActivity : BaseActivity(), ProfileView {
         val adapter = PostsAdapter(this, wallPosts, profiles, groups, ImageViewFormatter(this, deviceWidthInDp))
         rv_profile_wall.layoutManager = LinearLayoutManager(this)
         rv_profile_wall.adapter = adapter
+        pb_profile_wall.visibility = View.GONE
+        showWallData()
     }
 
     override fun showDataError(errorStr: String) {
@@ -135,9 +138,20 @@ class ProfileActivity : BaseActivity(), ProfileView {
 
     override fun showProgress() {
         layout_profile_progressbar.visibility = View.VISIBLE
+        pb_profile_wall.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
         layout_profile_progressbar.visibility = View.GONE
+    }
+
+    fun showWallData() {
+        tv_profile_wall_count.visibility = View.VISIBLE
+        rv_profile_wall.visibility = View.VISIBLE
+    }
+
+    fun hideWallData() {
+        tv_profile_wall_count.visibility = View.GONE
+        rv_profile_wall.visibility = View.GONE
     }
 }

@@ -21,9 +21,14 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    google()
+}
+
 ext {
     // AndroidX Pack
-    appCompatVersion = "1.0.2"
+    appCompatVersion = "1.1.0-alpha02"
     vectorDrawableVersion = "1.0.1"
     coreKtxVersion = "1.0.1"
     constraintVersion = "2.0.0-alpha3"
@@ -49,18 +54,20 @@ ext {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Testing
     testImplementation "junit:junit:$junitVersion"
     testImplementation "com.android.support.test:runner:1.0.2"
     androidTestImplementation "androidx.test:runner:$testRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$testEspressoVersion"
     testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
-
     testImplementation "org.powermock:powermock-module-junit4-rule:$powermockVersion"
     testImplementation "org.powermock:powermock-core:$powermockVersion"
     testImplementation "org.powermock:powermock-module-junit4:$powermockVersion"
     testImplementation "org.powermock:powermock-api-mockito2:$powermockVersion"
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Android X
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
     implementation "com.google.android.material:material:$materialVersion"
@@ -69,26 +76,23 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recyclerVersion"
     implementation "androidx.core:core-ktx:$coreKtxVersion"
 
+    // Network
     implementation "com.google.code.gson:gson:$gsonVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofitAdapterVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
+    // Code
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    // Views
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
-
     implementation "com.github.florent37:shapeofview:$shapeOfViewVersion"
 
+    // Other
     implementation 'com.github.danylovolokh:hashtag-helper:1.1.0'
-}
-
-repositories {
-    mavenCentral()
-    google()
 }
