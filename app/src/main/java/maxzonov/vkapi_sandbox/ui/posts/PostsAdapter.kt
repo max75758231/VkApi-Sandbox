@@ -1,7 +1,7 @@
 package maxzonov.vkapi_sandbox.ui.posts
 
 import android.content.Context
-import android.os.Build
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.volokh.danylo.hashtaghelper.HashTagHelper
 import kotlinx.android.synthetic.main.item_post.view.*
 import maxzonov.vkapi_sandbox.R
 import maxzonov.vkapi_sandbox.data.groups.Group
@@ -20,6 +19,7 @@ import maxzonov.vkapi_sandbox.data.post.Post
 import maxzonov.vkapi_sandbox.data.post.PostProfile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 import maxzonov.vkapi_sandbox.utils.ImageViewFormatter
+import maxzonov.vkapi_sandbox.utils.TextFormatter
 
 class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>, val profiles: ArrayList<PostProfile>,
                    val groups: ArrayList<Group>, private val imageViewFormatter: ImageViewFormatter) :
@@ -142,19 +142,18 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
 
     private fun showOrHideText(holder: WallPostsViewHolder, wallPost: Post) {
         if (wallPost.text != "") {
-            holder.tvText.text = wallPost.text
-            colorHashtagsInText(holder.tvText)
 
+            colorHashtagsInText(holder.tvText, TextFormatter.highlightHashtagsInText(wallPost.text))
         } else {
             holder.tvText.visibility = View.GONE
         }
     }
 
-    private fun colorHashtagsInText(textView: TextView) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            HashTagHelper.Creator.create(context.getColor(R.color.colorPrimary), null).handle(textView)
+    private fun colorHashtagsInText(textView: TextView, text: String) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            textView.text = Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY)
         } else {
-            HashTagHelper.Creator.create(context.resources.getColor(R.color.colorPrimary), null).handle(textView)
+            textView.text = Html.fromHtml(text)
         }
     }
 
