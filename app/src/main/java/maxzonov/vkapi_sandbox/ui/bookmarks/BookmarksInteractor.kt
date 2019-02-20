@@ -26,13 +26,12 @@ class BookmarksInteractor {
         this.onLoadingResultListener = onLoadingResultListener
 
         compositeDisposable.add(
-            apiService
-                .getBookmarksResponse(
+            apiService.getBookmarksResponse(
                     Constants.VK_METHOD_BOOKMARKS,
                     "1",
                     token!!,
                     Constants.VK_API_VERSION
-                )
+            )
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleResponseSuccess, this::handleResponseError)
         )

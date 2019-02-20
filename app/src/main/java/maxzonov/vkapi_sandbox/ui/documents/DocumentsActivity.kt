@@ -40,7 +40,7 @@ class DocumentsActivity : BaseActivity(), DocumentsView {
     override fun showDataFromServer(docs: ArrayList<Doc>) {
         this.docsAll = docs
 
-        putIndividualData()
+        sortDataToIndividualArrays()
 
         val adapter = DocumentsAdapter(this, docs)
         rv_docs.layoutManager = LinearLayoutManager(this)
@@ -57,6 +57,20 @@ class DocumentsActivity : BaseActivity(), DocumentsView {
 
     override fun hideProgress() {
         pb_docs.visibility = View.GONE
+    }
+
+    private fun sortDataToIndividualArrays() {
+        for(doc in docsAll) {
+            when (doc.type) {
+                1 -> docsText.add(doc)
+                2 -> docsArchive.add(doc)
+                3 -> docsGif.add(doc)
+                4 -> docsImage.add(doc)
+                5 -> docsAudio.add(doc)
+                6 -> docsVideo.add(doc)
+                else -> docsOther.add(doc)
+            }
+        }
     }
 
     private fun initChipsClickListeners() {
@@ -90,19 +104,5 @@ class DocumentsActivity : BaseActivity(), DocumentsView {
         val adapter = DocumentsAdapter(this, docs)
         rv_docs.layoutManager = LinearLayoutManager(this)
         rv_docs.adapter = adapter
-    }
-
-    private fun putIndividualData() {
-        for(doc in docsAll) {
-            when (doc.type) {
-                1 -> docsText.add(doc)
-                2 -> docsArchive.add(doc)
-                3 -> docsGif.add(doc)
-                4 -> docsImage.add(doc)
-                5 -> docsAudio.add(doc)
-                6 -> docsVideo.add(doc)
-                else -> docsOther.add(doc)
-            }
-        }
     }
 }

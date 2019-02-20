@@ -15,8 +15,7 @@ import maxzonov.vkapi_sandbox.data.docs.Doc
 class DocumentsAdapter (val context: Context, val docs: ArrayList<Doc>) : RecyclerView.Adapter<DocumentsAdapter.DocsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DocsViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_document, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_document, parent, false)
         return DocsViewHolder(itemView)
     }
 

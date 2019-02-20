@@ -29,18 +29,16 @@ class PhotosInteractor {
 
         Log.d("myLog", token)
         compositeDisposable.add(
-                apiService
-                        .getPhotoResponse
-                        (
-                                Constants.VK_METHOD_PHOTOS,
-                                userId,
-                                token!!,
-                                "profile",
-                                Constants.VK_EXTENDED,
-                                Constants.VK_API_VERSION
-                        )
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(this::handleResponseSuccess, this::handleResponseError)
+                apiService.getPhotoResponse(
+                    Constants.VK_METHOD_PHOTOS,
+                    userId,
+                    token!!,
+                    "profile",
+                    Constants.VK_EXTENDED,
+                    Constants.VK_API_VERSION
+                )
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(this::handleResponseSuccess, this::handleResponseError)
         )
     }
 

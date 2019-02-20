@@ -15,8 +15,7 @@ import maxzonov.vkapi_sandbox.data.photos.Photo
 class PhotosAdapter (val context: Context, val photos: ArrayList<Photo>) : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotosViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_photo, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_photo, parent, false)
         return PhotosViewHolder(itemView)
     }
 

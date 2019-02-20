@@ -23,14 +23,6 @@ class BookmarksActivity : BaseActivity(), BookmarksView {
         presenter.getBookmarksData()
     }
 
-    override fun showProgress() {
-        pb_bookmarks.visibility = View.VISIBLE
-    }
-
-    override fun hideProgress() {
-        pb_bookmarks.visibility = View.GONE
-    }
-
     override fun showDataFromServer(response: ResponsePosts) {
         val displayMetrics = resources.displayMetrics
         val deviceWidthInDp: Int = (displayMetrics.widthPixels / displayMetrics.density).toInt()
@@ -38,6 +30,14 @@ class BookmarksActivity : BaseActivity(), BookmarksView {
         rv_bookmarks.layoutManager = LinearLayoutManager(this)
         rv_bookmarks.adapter = adapter
         hideProgress()
+    }
+
+    override fun showProgress() {
+        pb_bookmarks.visibility = View.VISIBLE
+    }
+
+    override fun hideProgress() {
+        pb_bookmarks.visibility = View.GONE
     }
 
     override fun showDataError(errorStr: String) {

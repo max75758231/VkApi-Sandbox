@@ -145,12 +145,12 @@ class ProfileActivity : BaseActivity(), ProfileView {
         layout_profile_progressbar.visibility = View.GONE
     }
 
-    fun showWallData() {
+    private fun showWallData() {
         tv_profile_wall_count.visibility = View.VISIBLE
         rv_profile_wall.visibility = View.VISIBLE
     }
 
-    fun hideWallData() {
+    private fun hideWallData() {
         tv_profile_wall_count.visibility = View.GONE
         rv_profile_wall.visibility = View.GONE
     }

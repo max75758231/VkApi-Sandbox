@@ -29,7 +29,7 @@ class GroupsInteractor {
         this.onLoadingResultListener = onLoadingResultListener
 
         compositeDisposable.add(
-                apiService.getGroupsResponse (
+                apiService.getGroupsResponse(
                         Constants.VK_METHOD_GROUPS,
                         userId,
                         token!!,

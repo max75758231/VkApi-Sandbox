@@ -35,8 +35,7 @@ class ProfileInteractor {
 
         compositeDisposable.add(
                 apiService
-                        .getInitialProfileResponse
-                        (
+                        .getInitialProfileResponse(
                             Constants.VK_METHOD_USERS,
                             userId,
                             Constants.VK_FIELDS_PROFILE,

@@ -26,14 +26,6 @@ class FriendsActivity : BaseActivity(), FriendsView {
         super.onDestroy()
     }
 
-    override fun showProgress() {
-        pb_friends.visibility = View.VISIBLE
-    }
-
-    override fun hideProgress() {
-        pb_friends.visibility = View.GONE
-    }
-
     override fun showDataFromServer(friendsResponse: ResponseFriends) {
         tv_friends_count.text = getString(R.string.friends_count, friendsResponse.response.count.toString())
 
@@ -44,5 +36,13 @@ class FriendsActivity : BaseActivity(), FriendsView {
 
     override fun showDataError(errorStr: String) {
         Toast.makeText(this, "Ошибка получения списка друзей", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showProgress() {
+        pb_friends.visibility = View.VISIBLE
+    }
+
+    override fun hideProgress() {
+        pb_friends.visibility = View.GONE
     }
 }

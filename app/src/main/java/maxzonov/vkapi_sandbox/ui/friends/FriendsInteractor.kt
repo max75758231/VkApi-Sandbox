@@ -27,15 +27,14 @@ class FriendsInteractor {
         this.onLoadingResultListener = onLoadingResultListener
 
         compositeDisposable.add(
-            apiService
-                .getFriendsResponse(
+            apiService.getFriendsResponse(
                     Constants.VK_METHOD_FRIENDS,
                     userId,
                     Constants.VK_FRIENDS_SORT_BY,
                     Constants.VK_FRIENDS_FIELDS,
                     token!!,
                     Constants.VK_API_VERSION
-                )
+            )
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleResponseSuccess, this::handleResponseError)
         )

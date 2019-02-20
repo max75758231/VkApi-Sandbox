@@ -26,8 +26,7 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
     RecyclerView.Adapter<PostsAdapter.WallPostsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallPostsViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_post, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
         return WallPostsViewHolder(itemView)
     }
 
@@ -62,7 +61,6 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
     }
 
     private fun fillImageAndName(holder: WallPostsViewHolder, wallPost: Post) {
-
         showSourceInfo(holder, wallPost)
         showAttachmentsOrHideImageView(holder, wallPost)
         showOrHideText(holder, wallPost)
@@ -71,10 +69,10 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
     private fun showSourceInfo(holder: WallPostsViewHolder, wallPost: Post) {
         var sourceAvaUrl = ""
 
-        if (wallPost.id >= 0) {
-            sourceAvaUrl = showProfileNameAndGetProfileAva(holder, wallPost)
+        sourceAvaUrl = if (wallPost.id >= 0) {
+            showProfileNameAndGetProfileAva(holder, wallPost)
         } else {
-            sourceAvaUrl = showGroupNameAndGetGroupAva(holder, wallPost)
+            showGroupNameAndGetGroupAva(holder, wallPost)
         }
 
         Glide.with(context)
@@ -120,7 +118,7 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
             wallPost.attachments.forEach {
                 if (it.type == "photo") {
                     val photoSize: PhotoSize = it.photo.photoSizes[it.photo.photoSizes.size - 1]
-                    var url = photoSize.url
+                    val url = photoSize.url
 
                     resizeImageView(holder, photoSize)
 
