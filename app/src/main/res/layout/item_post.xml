@@ -122,15 +122,29 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_post_item_date"
                 tools:text="Текст какой-то тестовый и длинный. Самый длинный. Для верстки." />
 
-            <ImageView
-                android:id="@+id/iv_post_item_image"
+            <FrameLayout
+                android:id="@+id/framelayout_post_item_image"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_post_item_text"
-                app:layout_constraintTop_toBottomOf="@+id/tv_post_item_text"
-                tools:srcCompat="@drawable/ic_launcher_background" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_post_item_text">
+
+                <ImageView
+                    android:id="@+id/iv_post_item_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@drawable/ic_launcher_background" />
+
+                <ImageView
+                    android:id="@+id/iv_post_play_video"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_wallpost_play"/>
+            </FrameLayout>
         </LinearLayout>
 
         <View

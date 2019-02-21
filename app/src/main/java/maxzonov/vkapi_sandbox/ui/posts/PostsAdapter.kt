@@ -5,6 +5,7 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -126,14 +127,24 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
                         .load(url)
                         .apply(RequestOptions.bitmapTransform(RoundedCorners(12)))
                         .into(holder.ivAttachment)
+
                     return@loop
+
+                } else if (it.type == "video") {
+                    val url = it.video.imagePreviewUrl320
+                    holder.ivPlayVideo.visibility = View.VISIBLE
+
+                    Glide.with(context)
+                        .load(url)
+                        .apply(RequestOptions.bitmapTransform(RoundedCorners(12)))
+                        .into(holder.ivAttachment)
                 }
             }
         }
     }
 
     private fun resizeImageView(holder: WallPostsViewHolder, photoSize: PhotoSize) {
-        val params: ViewGroup.LayoutParams = holder.ivAttachment.layoutParams
+        val params: ViewGroup.LayoutParams = holder.layoutImage.layoutParams
         params.height = imageViewFormatter.getImageViewHeightInPx(photoSize.height, photoSize.width)
         holder.ivAttachment.requestLayout()
     }
@@ -158,6 +169,7 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
     class WallPostsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivAvatar: ImageView = itemView.iv_post_avatar
         val ivAttachment: ImageView = itemView.iv_post_item_image
+        val ivPlayVideo: ImageView = itemView.iv_post_play_video
         val tvName: TextView = itemView.tv_post_item_name
         val tvDate: TextView = itemView.tv_post_item_date
         val tvText: TextView = itemView.tv_post_item_text
@@ -165,5 +177,6 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
         val tvComment: TextView = itemView.tv_post_item_comment
         val tvRepost: TextView = itemView.tv_post_item_repost
         val tvReposted: TextView = itemView.tv_post_reposted
+        val layoutImage: FrameLayout = itemView.framelayout_post_item_image
     }
 }
