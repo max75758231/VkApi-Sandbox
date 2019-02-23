@@ -101,7 +101,8 @@ class ProfileActivity : BaseActivity(), ProfileView {
 
         val displayMetrics = resources.displayMetrics
         val deviceWidthInDp: Int = (displayMetrics.widthPixels / displayMetrics.density).toInt()
-        val adapter = PostsAdapter(this, wallPosts, profiles, groups, ImageViewFormatter(this, deviceWidthInDp))
+        val postsInfo = Triple(wallPosts, profiles, groups)
+        val adapter = PostsAdapter(this, postsInfo, ImageViewFormatter(this, deviceWidthInDp))
         rv_profile_wall.layoutManager = LinearLayoutManager(this)
         rv_profile_wall.adapter = adapter
         pb_profile_wall.visibility = View.GONE

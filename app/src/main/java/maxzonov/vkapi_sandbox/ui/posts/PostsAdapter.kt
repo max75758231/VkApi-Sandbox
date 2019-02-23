@@ -18,12 +18,14 @@ import maxzonov.vkapi_sandbox.data.groups.Group
 import maxzonov.vkapi_sandbox.data.photos.PhotoSize
 import maxzonov.vkapi_sandbox.data.post.Post
 import maxzonov.vkapi_sandbox.data.post.PostProfile
+import maxzonov.vkapi_sandbox.data.profile.Profile
 import maxzonov.vkapi_sandbox.utils.DateFormatter
 import maxzonov.vkapi_sandbox.utils.ImageViewFormatter
 import maxzonov.vkapi_sandbox.utils.TextFormatter
 
-class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>, val profiles: ArrayList<PostProfile>,
-                   val groups: ArrayList<Group>, private val imageViewFormatter: ImageViewFormatter) :
+class PostsAdapter(val context: Context,
+                   private val postsInfo: Triple<ArrayList<Post>, ArrayList<PostProfile>, ArrayList<Group>>,
+                   private val imageViewFormatter: ImageViewFormatter) :
     RecyclerView.Adapter<PostsAdapter.WallPostsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallPostsViewHolder {
@@ -32,11 +34,11 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
     }
 
     override fun getItemCount(): Int {
-        return wallPosts.size
+        return postsInfo.first.size
     }
 
     override fun onBindViewHolder(holder: WallPostsViewHolder, position: Int) {
-        val wallPost: Post = wallPosts[position]
+        val wallPost: Post = postsInfo.first[position]
 
         showGeneralInfo(holder, wallPost)
         showSpecificInformation(holder, wallPost)
@@ -84,6 +86,7 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
 
     private fun showProfileNameAndGetProfileAva(holder: WallPostsViewHolder, wallPost: Post): String {
         var profileAvaUrl = ""
+        val profiles: ArrayList<PostProfile> = postsInfo.second
         profiles.forEach {
             if (it.id == wallPost.id) {
                 profileAvaUrl = it.photoUrl
@@ -95,7 +98,7 @@ class PostsAdapter(val context: Context, private val wallPosts: ArrayList<Post>,
 
     private fun showGroupNameAndGetGroupAva(holder: WallPostsViewHolder, wallPost: Post): String {
         var groupAvaUrl = ""
-
+        val groups: ArrayList<Group> = postsInfo.third
         groups.forEach {
             if (it.groudId == (-1 * wallPost.id)) {
                 groupAvaUrl = it.groupPhotoUrl

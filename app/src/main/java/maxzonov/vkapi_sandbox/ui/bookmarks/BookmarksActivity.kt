@@ -26,7 +26,8 @@ class BookmarksActivity : BaseActivity(), BookmarksView {
     override fun showDataFromServer(response: ResponsePosts) {
         val displayMetrics = resources.displayMetrics
         val deviceWidthInDp: Int = (displayMetrics.widthPixels / displayMetrics.density).toInt()
-        val adapter = PostsAdapter(this, response.posts.responseItems, response.posts.profiles, response.posts.groups, ImageViewFormatter(this, deviceWidthInDp))
+        val postsInfo = Triple(response.posts.responseItems, response.posts.profiles, response.posts.groups)
+        val adapter = PostsAdapter(this, postsInfo, ImageViewFormatter(this, deviceWidthInDp))
         rv_bookmarks.layoutManager = LinearLayoutManager(this)
         rv_bookmarks.adapter = adapter
         hideProgress()
