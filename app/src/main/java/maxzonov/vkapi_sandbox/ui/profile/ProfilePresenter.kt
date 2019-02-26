@@ -21,8 +21,8 @@ class ProfilePresenter(private var view: ProfileActivity?, private val interacto
         view?.showProfileDataInfo(profile)
     }
 
-    override fun onResultSuccess(wallPosts: ArrayList<Post>, profiles: ArrayList<PostProfile>, groups: ArrayList<Group>) {
-        view?.showProfileWallPosts(wallPosts, profiles, groups)
+    override fun onResultSuccess(postsInfo: Triple<ArrayList<Post>, ArrayList<PostProfile>, ArrayList<Group>>) {
+        view?.showProfileWallPosts(postsInfo)
     }
 
     override fun onResultFail(errorStr: String) {

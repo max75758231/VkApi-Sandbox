@@ -10,6 +10,6 @@ interface ProfileView {
     fun showProgress()
     fun hideProgress()
     fun showProfileDataInfo(profile: Profile)
-    fun showProfileWallPosts(wallPosts: ArrayList<Post>, profiles: ArrayList<PostProfile>, groups: ArrayList<Group>)
+    fun showProfileWallPosts(postsInfo: Triple<ArrayList<Post>, ArrayList<PostProfile>, ArrayList<Group>>)
     fun showDataError(errorStr: String)
 }

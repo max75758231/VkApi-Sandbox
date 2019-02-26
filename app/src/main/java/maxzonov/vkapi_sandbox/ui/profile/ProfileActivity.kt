@@ -96,12 +96,11 @@ class ProfileActivity : BaseActivity(), ProfileView {
                 .into(iv_profile_ava)
     }
 
-    override fun showProfileWallPosts(wallPosts: ArrayList<Post>, profiles: ArrayList<PostProfile>, groups: ArrayList<Group>) {
-        tv_profile_wall_count.text = getString(R.string.profile_wall_count, wallPosts.size.toString())
+    override fun showProfileWallPosts(postsInfo: Triple<ArrayList<Post>, ArrayList<PostProfile>, ArrayList<Group>>) {
+        tv_profile_wall_count.text = getString(R.string.profile_wall_count, postsInfo.first.size.toString())
 
         val displayMetrics = resources.displayMetrics
         val deviceWidthInDp: Int = (displayMetrics.widthPixels / displayMetrics.density).toInt()
-        val postsInfo = Triple(wallPosts, profiles, groups)
         val adapter = PostsAdapter(this, postsInfo, ImageViewFormatter(this, deviceWidthInDp))
         rv_profile_wall.layoutManager = LinearLayoutManager(this)
         rv_profile_wall.adapter = adapter

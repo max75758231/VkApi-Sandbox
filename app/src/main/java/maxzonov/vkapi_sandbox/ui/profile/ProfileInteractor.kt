@@ -19,7 +19,7 @@ class ProfileInteractor {
 
     interface OnLoadingResultListener {
         fun onResultSuccess(profile: Profile)
-        fun onResultSuccess(wallPosts: ArrayList<Post>, profiles: ArrayList<PostProfile>, groups: ArrayList<Group>)
+        fun onResultSuccess(postsInfo: Triple<ArrayList<Post>, ArrayList<PostProfile>, ArrayList<Group>>)
         fun onResultFail(errorStr: String)
     }
 
@@ -83,7 +83,10 @@ class ProfileInteractor {
 
     private fun handleWallResponseSuccess(response: ResponsePosts) {
         val wallPosts: ArrayList<Post> = response.posts.responseItems
-        onLoadingResultListener.onResultSuccess(wallPosts, response.posts.profiles, response.posts.groups)
+        val profiles: ArrayList<PostProfile> = response.posts.profiles
+        val groups: ArrayList<Group> = response.posts.groups
+        val postsInfo: Triple<ArrayList<Post>, ArrayList<PostProfile>, ArrayList<Group>> = Triple(wallPosts, profiles, groups)
+        onLoadingResultListener.onResultSuccess(postsInfo)
     }
 
     private fun handleWallResponseError(error: Throwable) {
