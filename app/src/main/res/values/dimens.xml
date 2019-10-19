@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General dimens -->
-
     <dimen name="general_spacing_4dp">4dp</dimen>
     <dimen name="general_spacing_8dp">8dp</dimen>
     <dimen name="general_spacing_12dp">12dp</dimen>
@@ -12,13 +11,18 @@
     <dimen name="general_avatar_size_48dp">48dp</dimen>
 
     <!-- Profile dimens -->
-
     <dimen name="profile_iv_size">250dp</dimen>
-
     <dimen name="profile_bdate_font_size">14sp</dimen>
     <dimen name="profile_name_font_size">16sp</dimen>
 
     <!-- Menu dimens -->
-
     <dimen name="menu_title_16sp">16sp</dimen>
+
+    <!-- Font sizes -->
+    <dimen name="font_size_4sp">4sp</dimen>
+    <dimen name="font_size_8sp">8sp</dimen>
+    <dimen name="font_size_12sp">12sp</dimen>
+    <dimen name="font_size_14sp">14sp</dimen>
+    <dimen name="font_size_16sp">16sp</dimen>
+    <dimen name="font_size_18sp">18sp</dimen>
 </resources>
